@@ -1,0 +1,58 @@
+//- Defaults Vars
+- var titlePage    = "Facturador"
+- var pageDescription = 'Facturador de Productos'
+
+
+//- Page Vars (Override previous)
+block vars
+
+//-  Init Document
+doctype html
+html(lang="en")
+	head
+		meta(charset="utf-8")
+		//[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]
+		title= titlePage
+		meta(name="description" content="#{pageDescription}")
+		meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1")
+
+		//********************  CSS  ********************
+		//Bootstrap 3.2.0
+		link(rel="stylesheet" href="css/vendor/bootstrap.min.css")
+
+		//Font icons: Font Awesome 4.2
+		link(rel="stylesheet" href="css/vendor/font-awesome.min.css")
+	
+		//Custom CSS
+		link(rel="stylesheet" href="css/styles.css")
+		
+		//Modernizr
+		script(src="js/vendor/modernizr.min.js")
+
+
+
+
+	body
+		//begin Content
+		section
+			block content
+		//end Content
+
+		
+		//begin Footer
+		footer
+			p Developed by: 
+		//end Footer
+
+		
+		//********************************************************************
+		//************************* Javascript Files *************************
+		script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+		script
+			| window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')
+		script(src="js/vendor/bootstrap.min.js")
+
+		script(src="js/vendor/retina.min.js")
+
+		//Custom Script
+		script(src="js/script.js")
