@@ -16,6 +16,8 @@
 			)
 		);
 
+
+
 	} else if($accion == "obtener-clientes") {
 		$clientes = array();
 		
@@ -31,6 +33,20 @@
 			'accion' => 'obtener-cliente',
 			'data' => $clientes,
 		);
+	
+
+
+	} else if($accion == "obtener-articulo") {
+		$data = array(
+			'estado' => 'exito', #exito, error
+			'accion' => 'obtener-articulo',
+			'data' => array(
+				'codigo' => "0001",
+				'denominacion' => "Remera Hombre Manga Corta",
+				'precio' => "135.99"
+			)
+		);
+
 	}
 	
 

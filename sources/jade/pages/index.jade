@@ -52,7 +52,7 @@ block content
 					.panel.panel-primary
 						.panel-heading Artículos
 						.panel-body
-							table.table.table-hover
+							table.table.table-hover.articulos
 								thead
 									tr
 										th.wSmall Cod.
@@ -63,21 +63,15 @@ block content
 										th.wSmall
 
 								tbody
-									tr
-										td 669
-										td.text-center 6
-										td Denominación
-										td.text-right $ 10.99
-										td.text-right $ 109.90
-										td.text-right: a.btn.btn-danger(href="#"): i.fa.fa-trash
 
+								tfoot
 									tr
-										td: input.form-control(placeholder="Cod. Art.")
-										td: input.form-control(placeholder="Cantidad")
-										td Denominación
-										td.text-right $ 10.99
-										td.text-right $ 109.90
-										td.text-right: a.btn.btn-warning(href="#"): i.fa.fa-times
+										td: input#articulo-codigo.form-control(type="number" placeholder="Cod. Art.")
+										td: input#articulo-cantidad.form-control(type="number" placeholder="Cantidad")
+										td#articulo-denominacion 
+										td#articulo-precio.text-right $ 0.00
+										td#articulo-importe.text-right $ 0.00
+										td.text-right: a.btn.btn-warning#clear-form(href="#"): i.fa.fa-times
 
 
 
