@@ -1,0 +1,4 @@
+# Ignoramos archivos de Base de Datos
+*.dbf
+*.fpt
+db/*

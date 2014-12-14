@@ -1,0 +1,2899 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 2.8.2r1
+*/
+/**
+ * YUI Reset
+ * @module reset
+ * @namespace
+ * @requires 
+ */
+/*Begin reset YUI style*/ 
+	html{color:#000; /*background:#FFF;*/ height: 100%;}
+	body{height:100%;}
+	body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td {margin:0; padding:0;}
+	table{border-collapse:collapse; border-spacing:0;}
+	fieldset,img{border:0;}
+	address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit; font-weight:inherit;}
+	del,ins{text-decoration:none;}
+	/*li{list-style:none;}*/
+	h1,h2,h3,h4,h5,h6{font-size:100%; font-weight:normal;}
+	q:before,q:after{content:'';}
+	abbr,acronym{border:0; font-variant:normal;}
+	sup{vertical-align:baseline;}
+	sub{	vertical-align:baseline;}
+	/*because legend doesn't inherit in IE */
+	legend{color:#000;}
+	input,button,textarea,select,optgroup,option{font-family:inherit; font-size:inherit; font-style:inherit; font-weight:inherit;}
+	/*@purpose To enable resizing for IE */
+	/*@branch For IE6-Win, IE7-Win */
+	input,button,textarea,select{*font-size:100%;}
+/*End reset YUI style*/ 
+
+/*BEGIN DEFAULT STYLES BLOCK*/
+	* {white-space:inherit; }
+	a {color:inherit; outline:none; text-decoration:underline;}
+	body {font:8pt Tahoma, Verdana, Arial, Helvetica, SunSans-Regular, Sans-Serif;}	
+	.runner-page {color:Black; background-color:white;}
+	
+	/*Begin container common style*/
+	.runner-right, .runner-left, .runner-center, 
+	.runner-cg, .runner-cl, .runner-cr {
+		vertical-align: top;
+	}
+	.runner-cg .runner-c {
+		width: 100%;
+	}
+	.runner-bottomrow > .runner-cl, .runner-bottomrow > .runner-cr,
+	.runner-toprow > .runner-cl, .runner-toprow > .runner-cr {
+		font-size: 1px;
+		line-height: 0px;
+	}
+	.runner-toprow > .runner-cc {
+		text-align: center;
+	}
+	.runner-row > .runner-cc2 {
+		text-align: center;
+	}
+	.runner-cc.filler {
+		width:100%;
+	}
+	.runner-hc {
+		width:100%;
+	}
+	.runner-toprow,
+	.runner-bottomrow {
+		height:1px;
+	}
+	.runner-cl,
+	.runner-cr {
+		width:1px;
+	}
+	.runner-cl img,
+	.runner-cr img {
+		width:0px;
+		height:0px;
+	}
+	.runner-cc {
+		vertical-align:middle;
+	}
+
+	.runner-cc.alt {
+		text-align:left !important;
+	}
+
+	/*brick with left aligment in parent td*/
+	.runner-bl{
+		text-align:left;
+		width:1pt;/*1px*/
+	}
+	/*brick with center aligment in parent td*/
+	.runner-bc{
+		text-align:center;
+	}
+	/*brick with right aligment in parent td*/
+	.runner-br{
+		text-align:right;
+		width:1px;
+	}
+	/*icons for editing grid rows*/
+	.runner-icons img,
+	.runner-row.hovered .runner-icons img {
+		opacity:0.3;
+		filter:alpha(opacity=30);
+		margin: 0px 3px;
+		vertical-align: middle;
+	}
+	.runner-row.hovered .runner-icons img {
+		opacity:1;
+		filter:alpha(opacity=100);
+	}
+	.runner-verticalicons img, .runner-verticalcheckbox {
+		margin: 0px 3px;
+		vertical-align: middle;
+	}
+	.runner-wrapper  {
+		padding:0;
+	}
+	.runner-bottomrow .runner-cc {
+		padding:0;
+	}
+	/*row separator for vertical container*/
+	.runner-rs {
+		height:1pt;
+	}
+	/*row separator for grid container*/
+	.runner-c-grid .runner-rs {
+		height:23pt; 
+		line-height: 0px;
+	}
+	/*cell separator for grid container*/
+	.runner-cs {
+		width:15pt;
+	}
+	/*hidden styles for elements*/
+	.runner-hiddencontainer, 
+	.runner-hiddenbrick,
+	.runner-hiddenblock,
+	.runner-hiddenelem {
+		display: none;
+	}
+	.runner-nowrap, .runner-icons{
+		white-space: nowrap;
+	}	
+	/*End container common style*/
+	
+	/*Begin menu style*/
+	/*Default*/
+	.runner-hmenu a, 
+	.runner-vmenu.tree a,
+	.runner-vmenu.simple a
+	{
+		font-weight:bold;
+		text-decoration:none;
+	}
+	.runner-hmenu hr, 
+	.runner-vmenu.tree hr,
+	.runner-vmenu.simple hr 
+	{
+		height:1pt; 
+		clear:both;
+		border:0px none; 
+		vertical-align:middle;
+	}
+	.runner-hmenu td, .runner-hmenu li,
+	.runner-vmenu.simple, .runner-vmenu.simple li,
+	.runner-vmenu.tree
+	{
+		cursor:pointer;
+	}
+	.runner-hmenu ul,.runner-hmenu ul li,
+	.runner-vmenu.simple ul,.runner-vmenu.simple ul li,
+	.runner-vmenu.tree ul,.runner-vmenu.tree ul li,
+	.runner-vmenu.tree ul li ul
+	{
+		list-style:none;
+		margin:0;
+		padding:0;
+	}
+	.runner-hmenu, .runner-hmenu table
+	{
+		margin:0;
+		width:auto;
+	}
+	.runner-hmenu ul li,
+	.runner-vmenu.simple ul li 
+	{
+		width:auto;
+	}
+	
+	/*Horizonal*/
+	.runner-hmenu ul
+	{
+		display:none; 
+		position:absolute; 
+		z-index:1;
+	}
+	.runner-hmenu.temporary ul
+	{
+		display:block; 
+		position:relative; 
+	}
+	.runner-hmenu ul li
+	{
+		display:block; 
+		border-top:0px; 
+		padding: 3pt 0; 
+	}
+	.runner-hmenu  .usrsep
+	{
+		padding:0 9px;
+	}
+	
+	/*Vertical*/
+	.runner-vmenu.simple ul
+	{
+		z-index:1;
+	}
+	.runner-vmenu.simple ul li 
+	{
+		/*default padding for submenu*/
+		padding:4pt;
+		/*this style must be in skin where set IMG for LI, 
+		  it depended from size of IMG for LI and user padding settings*/
+		padding:3pt 3pt 3pt 11pt;
+		display:block;
+	}
+	.runner-vmenu.simple ul, 
+	.runner-vmenu.simple ul li ul
+	{
+		display:none;
+		position:absolute;
+		top:0;
+	}
+	.runner-vmenu.temporary ul, 
+	.runner-vmenu.temporary ul li ul
+	{
+		display: block;
+		position: relative;
+	}
+	.runner-vmenu.simple ul li ul
+	{
+		z-index:2;
+	}
+	
+	/*Tree-Like*/
+	.runner-vmenu.tree .runner-cc 
+		padding:4pt 0;
+	}
+	/*this style depended from size of img for group, leaf*/
+	.runner-vmenu.tree.level1 .runner-cc{
+		padding-left:10pt;
+	}
+	.runner-vmenu.tree.level2 .runner-cc{
+		padding-left:20pt;
+	}
+	.runner-vmenu.tree.level3 .runner-cc{
+		padding-left:30pt;
+	}
+	.runner-vmenu.tree.level4 .runner-cc{
+		padding-left:40pt;
+	}
+	.runner-vmenu.tree.level5 .runner-cc{
+		padding-left:50pt;
+	}
+	.runner-vmenu.tree  .usrsep{
+		padding:0;
+	}
+	.runner-vmenu .groupImg, 
+	.runner-vmenu .manage img{
+		margin-right:1pt;
+	}
+	.runner-vmenu .manage
+	{
+		text-align: left;
+		display: none;
+	}
+	.runner-vmenu .manage a
+	{
+		font-weight: normal; 
+	}
+	/*End menu style*/
+
+	/*Begin button style*/
+	.runner-btnframe {
+		display: inline-block;
+		position: relative;
+		overflow: hidden;
+		white-space: nowrap;
+		width: auto;
+		z-index: 0;
+		vertical-align: middle;
+		margin: 0 4pt;
+	}
+	.runner-btnleft,
+	.runner-btnright{
+		display: block;
+		position: absolute;
+		z-index: -1;
+	}
+	.runner-btnleft{
+		left:0;
+	}
+	.runner-btnright{
+		right:0;
+	}
+	.runner-button {
+		display: inline-block;
+		width: auto;
+		overflow: visible;
+		z-index: 0;
+		padding: 0pt;
+	}
+	/*End button style*/
+	
+	/*Begin search panel style*/
+	.addOptionLink{
+		margin: 1pt 4pt 10pt 4pt;
+	}
+	.searchOptions div{
+		padding: 8pt 0px 8pt 8pt;
+	}
+	.bottomSearchButt{
+		padding: 10pt 1pt 4pt 1pt;
+	}
+	.controlChooseMenu{
+		position: absolute;
+		display: none;
+		width: auto;
+		text-align: left;
+		line-height:2em;
+	}	
+	.srchPanelCell{
+		padding: 2pt;
+		white-space: normal;
+	}	
+	.srchPanelCell span{
+		margin: 0 2pt;
+		white-space: normal;
+	}
+	.srchPanelCell2{
+		line-height: 1.8;
+	}
+	.controlsBlock{	
+		border-collapse: separate;
+	}
+	.delButt, .searchPanelButton{
+		visibility: hidden;
+	}
+	.addSearchControl{
+		margin: 4pt;
+	}
+	.srchCritTop{
+		margin: 8pt 0pt 0pt 0pt; 
+	}
+	.ctlSearchTip{
+		color: #C0C0C0;
+	}
+	/* border classes when control is hovered in window mode*/
+	.cellBorderLeftHovered {
+		border-left: 1pt dotted #C0C0C0;
+	}
+	.cellBorderRightHovered {
+		border-right: 1pt dotted #C0C0C0;
+	}
+	.cellBorderCenterHovered {
+		border-top: 1pt dotted #C0C0C0;
+		border-bottom: 1pt dotted #C0C0C0;
+	}
+	/*End search panel style*/
+
+	/*Begin search suggest style*/
+	.search_suggest {
+		background-color: #FFFFFF;
+		border: 1px solid #000000;
+		color: black;
+		font-family: Verdana;
+		font-size: 8pt;
+		position: absolute;
+		text-align: left;
+		visibility: hidden;
+		width: 154pt;
+	}
+	.suggest_link {
+		background-color: #FFFFFF;
+		padding: 2pt 5pt;
+	}
+	.suggest_link_over {
+		background-color: #FFE4A2;
+		color: Black;
+		padding: 2pt 5pt 2pt 5pt;
+	}
+	/*End search suggest style*/
+
+	/*for wrong values in the Lookup editbox with ajax */
+	.highlight {
+		border: 2px solid #D32323;
+		padding: 1pt;
+	}
+	.yui-skin-sam .yui-panel .bd {
+		overflow: auto;
+	}
+
+	/*Begin timepicker styles*/
+	.runner-imgclock{
+		cursor: pointer;
+	}
+	.runner-timepicker-zindex{
+		z-index: 10;
+	}
+	/*End timepicker styles*/
+
+	/*Begin error styles*/
+	.runner-inline-error {
+		border: 1px solid #FFE4A2;
+		padding: 8pt;
+		position: absolute;
+		background-color: white;
+		background-repeat: no-repeat;
+	}
+	.runner-error-text
+	{
+		color: #D32323;
+		font-weight: normal;
+	}
+	.runner-error, .runner-error p {
+		color: #D32323;
+		font-weight: normal;
+	}
+	/*End error styles*/
+
+	/*Begin loading style*/
+	.runner-loading .show {display: block;}
+	.runner-loading .hide {display: none;}
+	.runner-loading .fon{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		z-index: 3000;
+		background-color: #000;
+		opacity: 0.20;
+		filter: alpha(opacity=20);
+	}
+	.runner-loading .main{
+		position: absolute;
+		z-index: 4000;
+		padding: 1em 2em;
+	}
+	.runner-loading .block1{
+		width: 112pt;
+		height: 37pt;
+		cursor: auto;
+		text-align: center;
+	}
+	.runner-loading .block2 {padding: 9pt 0;}
+	.runner-loading .text{
+		margin-left: 8pt;
+		font-size: 9pt;
+		vertical-align: middle;
+		font-weight: bold;
+	}
+	/*dynamic styles for load indicator*/
+	.runner-loading .block1 {
+		border: 2pt #6598b7 solid;
+		background-color: #f7f9fb;
+	}
+	.runner-loading .text{
+		color: #336699;
+		font-weight: bold;
+	}	
+	/*End loading style*/
+	
+	/*Begin multiple sorting hint style*/
+	.runner-sorthint{
+		width: 170pt;
+		padding: 2pt;
+		z-Index: 1000;
+		display: none;
+		position: absolute;
+		font-size: 7pt;
+		white-space: pre;
+		background-color: #ffffe1;
+		border: solid 1pt #747474;
+	}
+	/*End multiple sorting hint style*/
+
+	/*Begin locking style*/
+	.runner-locking{
+		top: 0;
+		left: 0;
+		padding: 5pt;
+		text-align: center;
+		margin-bottom: 8pt;
+		background-color: #FFC85D; /*dinamic*/
+		border-bottom: 1pt solid Black; /*dinamic*/
+	}
+	.runner-locking a{
+		margin-left: 15pt;
+	}
+	.runner-locking, .runner-locking a{
+		font-size: 10pt;
+	}
+	/*End styles for locking*/
+	
+	/*Begin s508 style*/
+	.runner-s508{
+		width: 1pt;
+		height: 1pt;
+		display: block;
+		overflow: hidden;
+	}
+	/*End s508 style*/
+	
+	/*Begin detailspreview in popup style*/
+	.runner-details-popup {
+		background-color: #FFF;
+		background-repeat: no-repeat;
+		border: 1px solid #444444;
+		color: black;
+		display: none;
+		padding: 8pt;
+		position: absolute;
+		z-index: 1001;
+	}
+	.runner-detailtable {
+		border: 1px solid #444444;
+	}
+	.runner-detailtable td {
+		padding: 4pt;
+		background-color: #FFF;
+	}
+	/*End detailspreview in popup style*/
+	
+	/*Begin field alignment style*/
+
+	.runner-field-checkbox, 
+	.runner-field-audio {text-align:center;}
+	.runner-field-number {text-align:right;}
+	.runner-field-audio {vertical-align:top;}
+	/*End field alignment style*/
+	
+	/*Begin details preview style*/
+	.runner-dpreviewrow .dpinline {
+		text-align: left;
+		vertical-align: top;
+	}
+	.runner-dpreviewrow .dpframe-cl{
+		border-left: 1px solid darkgray;
+	}
+	.runner-dpreviewrow .dpframe-cc, 
+	.runner-dpreviewrow .dpframe-cl, 
+	.runner-dpreviewrow .dpframe-cr{
+		border-top: 1px solid darkgray;
+		border-bottom: 1px solid darkgray;
+	}
+	.runner-dpreviewrow .dpframe-cr{
+		border-right: 1px solid darkgray;
+	}
+	/*End details preview style*/
+	
+	/*Begin admin rights style*/
+	.runner-ugaddarea{
+		display: none;
+		border: solid white 1px;
+		padding: 3pt;
+	}
+	.runner-ugaddarea  .groupname{
+		margin: 4pt 0 8pt 4pt;
+	}
+	.runner-ugaddarea  .gmessage{
+		margin-left: 4pt;
+	}
+	.runner-uglabel{
+		margin: 0 4pt 4pt 4pt; 
+	}
+	.runner-ugaddarea,
+	.runner-ugselgroup{
+		margin: 11pt 4pt 0 4pt;
+	}	
+	.runner-ugselgroup .group{
+		width: 120pt;
+	}
+	/*End admin rights style*/
+	
+	/*Begin message style*/
+	.runner-message
+	{
+		padding: 10px;
+	}
+	/*End message style*/
+	
+	/*style for upload types Keep Delete Upload*/
+	.runner-uploadtype {
+		margin-left: 4pt;
+		margin-right: 2pt;
+	}
+	/**/
+	.sectionFrame {
+		margin-top: 2pt;
+		padding: 2pt;
+		border: 1px dashed #FFE4A2;
+	}
+	/**/
+	.printpage {
+		page-break-after: always;
+	}
+	textarea{
+		white-space: pre-wrap;
+	}
+
+/*END DEFAULT STYLES BLOCK*/
+
+
+/*///////////////////////////////////////////BEGIN UNDEFINED STYLES BLOCK//////////////////////////////////////////////////////////*/
+/*Styles which must be set in style Editor*/
+
+	/*style for tooltips*/
+	/*
+	.shiny_box_body {
+		background: #ffe0b0;
+		border: solid 1px #e1c47b;
+	}
+	*/
+
+	/* Styles for Search panel 
+	.yui-skin-sam .yui-panel
+	{
+		border-color: - panel border color (top,bottom)
+	}
+	.yui-skin-sam .yui-panel .hd, .yui-skin-sam .yui-panel .bd, .yui-skin-sam .yui-panel .ft
+	{
+		border-color: - panel border color (left,right)
+	}
+	.yui-skin-sam .yui-panel .hd
+	{
+		background: - background color header
+		border-bottom:- border bottom header
+		color: - text color header
+	}
+	.yui-skin-sam .yui-panel .bd, .yui-skin-sam .yui-panel .ft
+	{
+		background-color: - background-color div
+	}
+
+	.yui-skin-sam .yui-panel .ft
+	{
+		border-top: - background color footer
+	}
+
+	Search panel Add fields
+	.runner-cl{
+		background:
+	}
+	.runner-cc {
+		background:
+	}
+	.runner-cr {
+		background:
+	}
+	*/
+
+/* new styles for tabs and sections*/
+/* в этой секции нужно оставить ссылки на три картинки: выбранный таб, наведенный таб, обычный таб)
+и описания цвета бордера складывающейся секции и набора табов
+остальные настройки будут браться из YUI файлов tabview.css и tabview-skin.css
+
+*/
+.yui-navset .yui-nav li,
+.yui-navset .yui-navset-top .yui-nav li,
+.yui-navset .yui-navset-bottom .yui-nav li
+{margin:0 .5em 0 0;}
+
+.yui-navset-left .yui-nav li,
+.yui-navset-right .yui-nav li
+{margin:0 0 .5em;}
+
+.yui-navset .yui-content .yui-hidden
+{border:0;height:0;width:0;padding:0;position:absolute;left:-999999px;overflow:hidden;visibility:hidden;}
+
+.yui-navset .yui-navset-left .yui-nav,
+.yui-navset .yui-navset-right .yui-nav,
+.yui-navset-left .yui-nav,.yui-navset-right .yui-nav
+{width:6em;}
+
+.yui-navset-top .yui-nav,
+.yui-navset-bottom .yui-nav
+{width:auto;}
+
+.yui-navset .yui-navset-left,.yui-navset-left
+{padding:0 0 0 6em;}
+
+.yui-navset-right
+{padding:0 6em 0 0;}
+
+.yui-navset-top,
+.yui-navset-bottom
+{padding:auto;}
+
+.yui-nav,
+.yui-nav li
+{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+.yui-navset li em
+{font-style:normal;}
+
+.yui-navset
+{position:relative;zoom:1;}
+
+.yui-navset .yui-content,
+.yui-navset .yui-content div
+{zoom:1;}
+
+.yui-navset .yui-content:after
+{
+	content:'';
+	display:block;
+	clear:both;
+}
+
+.yui-navset .yui-nav li,
+.yui-navset .yui-navset-top .yui-nav li,
+.yui-navset .yui-navset-bottom .yui-nav li
+{
+	display:inline-block;
+	display:-moz-inline-stack;
+	*display:inline;
+	vertical-align:bottom;
+	cursor:pointer;
+	zoom:1;
+}
+
+.yui-navset-left .yui-nav li,
+.yui-navset-right .yui-nav li
+{display:block;}
+
+.yui-navset .yui-nav a
+{position:relative;}
+
+.yui-navset .yui-nav li a,
+.yui-navset-top .yui-nav li a,
+.yui-navset-bottom .yui-nav li a
+{
+	display:block;
+	display:inline-block;
+	vertical-align:bottom;
+	zoom:1;
+}
+
+.yui-navset-left .yui-nav li a,
+.yui-navset-right .yui-nav li a
+{display:block;}
+
+.yui-navset-bottom .yui-nav li a
+{vertical-align:text-top;}
+
+.yui-navset .yui-nav li a em,
+.yui-navset-top .yui-nav li a em,
+.yui-navset-bottom .yui-nav li a em
+{display:block;}
+
+.yui-navset .yui-navset-left .yui-nav,
+.yui-navset .yui-navset-right .yui-nav,
+.yui-navset-left .yui-nav,.yui-navset-right .yui-nav
+{position:absolute;z-index:1;}
+
+.yui-navset-top .yui-nav,
+.yui-navset-bottom .yui-nav
+{position:static;}
+
+.yui-navset .yui-navset-left .yui-nav,
+.yui-navset-left .yui-nav
+{left:0;right:auto;}
+
+.yui-navset .yui-navset-right .yui-nav,
+.yui-navset-right .yui-nav
+{right:0;left:auto;}
+
+.yui-skin-sam .yui-navset .yui-nav,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav
+{
+	/*border:solid #2647a0;
+	border-width:2px;*/
+	zoom:1;
+}
+
+.yui-skin-sam .yui-navset .yui-nav li,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav li
+{margin:0 .16em 0 0;padding:1px 0 0;zoom:1;}
+
+.yui-skin-sam .yui-navset .yui-nav .selected,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav .selected
+{margin:0 .16em -1px 0;}
+
+.yui-skin-sam .yui-navset .yui-nav a,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav a
+{background:#d8d8d8 url(../images/dataPicker/sprite.png) repeat-x;border:solid #a3a3a3;border-width:0 1px;color:#000;position:relative;text-decoration:none;}
+
+.yui-skin-sam .yui-navset .yui-nav a em,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav a em
+{border:solid #a3a3a3;border-width:1px 0 0;cursor:hand;padding:.25em .75em;left:0;right:0;bottom:0;top:-1px;position:relative;}
+
+.yui-skin-sam .yui-navset .yui-nav .selected a,
+.yui-skin-sam .yui-navset .yui-nav .selected a:focus,
+.yui-skin-sam .yui-navset .yui-nav .selected a:hover
+{background:#2647a0 url(../images/dataPicker/sprite.png) repeat-x left -1400px;color:#fff;}
+
+.yui-skin-sam .yui-navset .yui-nav a:hover,
+.yui-skin-sam .yui-navset .yui-nav a:focus
+{background:#bfdaff url(../images/dataPicker/sprite.png) repeat-x left -1300px;outline:0;}
+
+.yui-skin-sam .yui-navset .yui-nav .selected a em
+{padding:.35em .75em;}
+
+.yui-skin-sam .yui-navset .yui-nav .selected a,
+.yui-skin-sam .yui-navset .yui-nav .selected a em
+{border-color:#243356;}
+
+.yui-skin-sam .yui-navset .yui-content
+{background:#edf5ff;}
+
+.yui-skin-sam .yui-navset .yui-content,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-content
+{border:1px solid #808080;border-top-color:#243356;padding:.25em .5em;}
+
+.yui-skin-sam .yui-navset-left .yui-nav,
+.yui-skin-sam .yui-navset .yui-navset-left .yui-nav,
+.yui-skin-sam .yui-navset .yui-navset-right .yui-nav,
+.yui-skin-sam .yui-navset-right .yui-nav
+{border-width:0 5px 0 0;Xposition:absolute;top:0;bottom:0;}
+
+.yui-skin-sam .yui-navset .yui-navset-right .yui-nav,
+.yui-skin-sam .yui-navset-right .yui-nav
+{border-width:0 0 0 5px;}
+
+.yui-skin-sam .yui-navset-left .yui-nav li,
+.yui-skin-sam .yui-navset .yui-navset-left .yui-nav li,
+.yui-skin-sam .yui-navset-right .yui-nav li
+{margin:0 0 .16em;padding:0 0 0 1px;}
+
+.yui-skin-sam .yui-navset-right .yui-nav li
+{padding:0 1px 0 0;}
+
+.yui-skin-sam .yui-navset-left .yui-nav .selected,
+.yui-skin-sam .yui-navset .yui-navset-left .yui-nav .selected
+{margin:0 -1px .16em 0;}
+
+.yui-skin-sam .yui-navset-right .yui-nav .selected
+{margin:0 0 .16em -1px;}
+
+.yui-skin-sam .yui-navset-left .yui-nav a,
+.yui-skin-sam .yui-navset-right .yui-nav a
+{border-width:1px 0;}
+
+.yui-skin-sam .yui-navset-left .yui-nav a em,
+.yui-skin-sam .yui-navset .yui-navset-left .yui-nav a em,
+.yui-skin-sam .yui-navset-right .yui-nav a em
+{border-width:0 0 0 1px;padding:.2em .75em;top:auto;left:-1px;}
+
+.yui-skin-sam .yui-navset-right .yui-nav a em
+{border-width:0 1px 0 0;left:auto;right:-1px;}
+
+.yui-skin-sam .yui-navset-left .yui-nav a,
+.yui-skin-sam .yui-navset-left .yui-nav .selected a,
+.yui-skin-sam .yui-navset-left .yui-nav a:hover,
+.yui-skin-sam .yui-navset-right .yui-nav a,.yui-skin-sam .yui-navset-right .yui-nav .selected a,
+.yui-skin-sam .yui-navset-right .yui-nav a:hover,.yui-skin-sam .yui-navset-bottom .yui-nav a,
+.yui-skin-sam .yui-navset-bottom .yui-nav .selected a,
+.yui-skin-sam .yui-navset-bottom .yui-nav a:hover
+{background-image:none;}
+
+.yui-skin-sam .yui-navset-left .yui-content
+{border:1px solid #808080;border-left-color:#243356;}
+
+.yui-skin-sam .yui-navset-bottom .yui-nav,
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav
+{border-width:5px 0 0;}
+
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav .selected,
+.yui-skin-sam .yui-navset-bottom .yui-nav .selected
+{margin:-1px .16em 0 0;}
+
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav li,
+.yui-skin-sam .yui-navset-bottom .yui-nav li
+{padding:0 0 1px 0;vertical-align:top;}
+
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav a em,
+.yui-skin-sam .yui-navset-bottom .yui-nav a em
+{border-width:0 0 1px;top:auto;bottom:-1px;}
+
+.yui-skin-sam .yui-navset-bottom .yui-content,
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-content
+{border:1px solid #808080;border-bottom-color:#243356;}
+
+.yui-skin-sam .yui-navset .yui-nav,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav { /* protect nested tabviews from other orientations */
+    border:solid #2647a0; /* color between tab list and content */
+    border-width:0 0 5px;
+    zoom:1;
+}
+
+.yui-skin-sam .yui-navset .yui-nav li,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav li {
+    margin:0 0.16em 0 0; /* space between tabs */
+    padding:1px 0 0; /* gecko: make room for overflow */
+    zoom:1;
+}
+
+.yui-skin-sam .yui-navset .yui-nav .selected,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav .selected { 
+    margin:0 0.16em -1px 0; /* for overlap */
+}
+
+.yui-skin-sam .yui-navset .yui-nav a,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav a {
+    background:#d8d8d8 url(sprite.png) repeat-x; /* tab background */
+    border:solid #a3a3a3;
+    border-width:0 1px;
+    color:#000;
+    position:relative;
+    text-decoration:none;
+}
+
+.yui-skin-sam .yui-navset .yui-nav a em,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav a em {
+    border:solid #a3a3a3;
+    border-width:1px 0 0;
+    cursor:hand;
+    padding:0.25em .75em;
+    left:0; right: 0; bottom: 0; /* protect from other orientations */
+    top:-1px; /* for 1px rounded corners */
+    position:relative;
+}
+
+.yui-skin-sam .yui-navset .yui-nav .selected a,
+.yui-skin-sam .yui-navset .yui-nav .selected a:focus, /* no focus effect for selected */
+.yui-skin-sam .yui-navset .yui-nav .selected a:hover { /* no hover effect for selected */
+    background:#2647a0 url(sprite.png) repeat-x left -1400px; /* selected tab background */
+    color:#fff;
+}
+
+.yui-skin-sam .yui-navset .yui-nav a:hover,
+.yui-skin-sam .yui-navset .yui-nav a:focus {
+    background:#bfdaff url(sprite.png) repeat-x left -1300px; /* selected tab background */
+    outline:0;
+}
+
+.yui-skin-sam .yui-navset .yui-nav .selected a em {
+    padding:0.35em 0.75em; /* raise selected tab */
+}
+
+.yui-skin-sam .yui-navset .yui-nav .selected a,
+.yui-skin-sam .yui-navset .yui-nav .selected a em {
+    border-color:#243356; /* selected tab border color */
+}
+
+.yui-skin-sam .yui-navset .yui-content {
+    background:#edf5ff; /* content background color */
+}
+
+.yui-skin-sam .yui-navset .yui-content,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-content {
+    border:1px solid #808080; /* content border */
+    border-top-color:#243356; /* different border color */
+    padding:0.25em 0.5em; /* content padding */
+}
+
+/* left and right orientations */
+.yui-skin-sam .yui-navset-left .yui-nav,
+.yui-skin-sam .yui-navset .yui-navset-left .yui-nav,
+.yui-skin-sam .yui-navset .yui-navset-right .yui-nav,
+.yui-skin-sam .yui-navset-right .yui-nav {
+    border-width:0 5px 0 0;
+    Xposition:absolute; /* from tabview-core; have to reiterate for skin-sam due to pos:rel on skin-sam yui-nav */
+    top:0; bottom:0; /* stretch to fill content height */
+}
+
+.yui-skin-sam .yui-navset .yui-navset-right .yui-nav,
+.yui-skin-sam .yui-navset-right .yui-nav {
+    border-width:0 0 0 5px;
+}
+
+.yui-skin-sam .yui-navset-left .yui-nav li,
+.yui-skin-sam .yui-navset .yui-navset-left .yui-nav li,
+.yui-skin-sam .yui-navset-right .yui-nav li {
+    margin:0 0 0.16em; /* space between tabs */
+    padding:0 0 0 1px; /* gecko: make room for overflow */
+}
+
+.yui-skin-sam .yui-navset-right .yui-nav li {
+    padding:0 1px 0 0; /* gecko: make room for overflow */
+}
+
+.yui-skin-sam .yui-navset-left .yui-nav .selected,
+.yui-skin-sam .yui-navset .yui-navset-left .yui-nav .selected { 
+    margin:0 -1px 0.16em 0;
+}
+
+.yui-skin-sam .yui-navset-right .yui-nav .selected { 
+    margin:0 0 0.16em -1px;
+}
+
+.yui-skin-sam .yui-navset-left .yui-nav a,
+.yui-skin-sam .yui-navset-right .yui-nav a {
+    border-width:1px 0;
+}
+
+.yui-skin-sam .yui-navset-left .yui-nav a em,
+.yui-skin-sam .yui-navset .yui-navset-left .yui-nav a em,
+.yui-skin-sam .yui-navset-right .yui-nav a em {
+    border-width:0 0 0 1px;
+    padding:0.2em .75em;
+    top:auto;
+    left:-1px; /* for 1px rounded corners */
+}
+
+.yui-skin-sam .yui-navset-right .yui-nav a em {
+    border-width:0 1px 0 0;
+    left:auto;
+    right:-1px; /* for 1px rounded corners */
+}
+
+.yui-skin-sam .yui-navset-left .yui-nav a,
+.yui-skin-sam .yui-navset-left .yui-nav .selected a,
+.yui-skin-sam .yui-navset-left .yui-nav a:hover,
+.yui-skin-sam .yui-navset-right .yui-nav a,
+.yui-skin-sam .yui-navset-right .yui-nav .selected a,
+.yui-skin-sam .yui-navset-right .yui-nav a:hover,
+.yui-skin-sam .yui-navset-bottom .yui-nav a,
+.yui-skin-sam .yui-navset-bottom .yui-nav .selected a,
+.yui-skin-sam .yui-navset-bottom .yui-nav a:hover {
+    background-image:none; /* no left-right or bottom-top gradient */
+}
+
+.yui-skin-sam .yui-navset-left .yui-content {
+    border:1px solid #808080; /* content border */
+    border-left-color:#243356; /* different border color */
+}
+
+/* bottom orientation */
+.yui-skin-sam .yui-navset-bottom .yui-nav,
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav {
+    border-width:5px 0 0; /* color between tab list and content */
+}
+
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav .selected,
+.yui-skin-sam .yui-navset-bottom .yui-nav .selected { 
+    margin:-1px 0.16em 0 0; /* for overlap */
+}
+
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav li,
+.yui-skin-sam .yui-navset-bottom .yui-nav li { 
+    padding:0 0 1px 0; /* gecko: make room for overflow */
+    vertical-align:top;
+}
+
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav li a,
+.yui-skin-sam .yui-navset-bottom .yui-nav li a { 
+}
+
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav a em,
+.yui-skin-sam .yui-navset-bottom .yui-nav a em {
+    border-width:0 0 1px;
+    top:auto;
+    bottom:-1px; /* for 1px rounded corners */
+}
+
+.yui-skin-sam .yui-navset-bottom .yui-content,
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-content {
+    border:1px solid #808080; /* content border */
+    border-bottom-color:#243356; /* different border color */
+}
+
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 2.8.1
+*/
+.yui-overlay,.yui-panel-container{visibility:hidden;position:absolute;z-index:2;}.yui-panel{position:relative;}.yui-panel-container form{margin:0;}.mask{z-index:1;display:none;position:absolute;top:0;left:0;right:0;bottom:0;}.mask.block-scrollbars{overflow:auto;}.masked select,.drag select,.hide-select select{_visibility:hidden;}.yui-panel-container select{_visibility:inherit;}.hide-scrollbars,.hide-scrollbars *{overflow:hidden;}.hide-scrollbars select{display:none;}.show-scrollbars{overflow:auto;}.yui-panel-container.show-scrollbars,.yui-tt.show-scrollbars{overflow:visible;}.yui-panel-container.show-scrollbars .underlay,.yui-tt.show-scrollbars .yui-tt-shadow{overflow:auto;}.yui-panel-container.shadow .underlay.yui-force-redraw{padding-bottom:1px;}.yui-effect-fade .underlay,.yui-effect-fade .yui-tt-shadow{display:none;}.yui-tt-shadow{position:absolute;}.yui-override-padding{padding:0!important;}.yui-panel-container .container-close{overflow:hidden;text-indent:-10000em;text-decoration:none;}.yui-overlay.yui-force-redraw,.yui-panel-container.yui-force-redraw{margin-bottom:1px;}.yui-skin-sam .mask{background-color:#000;opacity:.25;filter:alpha(opacity=25);}.yui-skin-sam .yui-panel-container{padding:0 1px;*padding:2px;}.yui-skin-sam .yui-panel{position:relative;left:0;top:0;border-style:solid;border-width:1px 0;border-color:#808080;z-index:1;*border-width:1px;*zoom:1;_zoom:normal;}.yui-skin-sam .yui-panel .hd,.yui-skin-sam .yui-panel .bd,.yui-skin-sam .yui-panel .ft{border-style:solid;border-width:0 1px;border-color:#808080;margin:0 -1px;*margin:0;*border:0;}.yui-skin-sam .yui-panel .hd{border-bottom:solid 1px #ccc;}.yui-skin-sam .yui-panel .bd,.yui-skin-sam .yui-panel .ft{background-color:#F2F2F2;}.yui-skin-sam .yui-panel .hd{padding:0 10px;font-size:93%;line-height:2;*line-height:1.9;font-weight:bold;color:#000;background:url(../images/dataPicker/sprite.png) repeat-x 0 -200px;}.yui-skin-sam .yui-panel .bd{padding:10px;}.yui-skin-sam .yui-panel .ft{border-top:solid 1px #808080;padding:5px 10px;font-size:77%;}.yui-skin-sam .container-close{position:absolute;top:5px;right:6px;width:25px;height:15px;background:url(../images/dataPicker/sprite.png) no-repeat 0 -300px;cursor:pointer;}.yui-skin-sam .yui-panel-container .underlay{right:-1px;left:-1px;}.yui-skin-sam .yui-panel-container.matte{padding:9px 10px;background-color:#fff;}.yui-skin-sam .yui-panel-container.shadow{_padding:2px 4px 0 2px;}.yui-skin-sam .yui-panel-container.shadow .underlay{position:absolute;top:2px;left:-3px;right:-3px;bottom:-3px;*top:4px;*left:-1px;*right:-1px;*bottom:-1px;_top:0;_left:0;_right:0;_bottom:0;_margin-top:3px;_margin-left:-1px;background-color:#000;opacity:.12;filter:alpha(opacity=12);}.yui-skin-sam .yui-dialog .ft{border-top:none;padding:0 10px 10px 10px;font-size:100%;}.yui-skin-sam .yui-dialog .ft .button-group{display:block;text-align:center;}.yui-skin-sam .yui-dialog .ft button.default{font-weight:bold;}.yui-skin-sam .yui-dialog .ft span.default{border-color:#304369;background-position:0 -1400px;}.yui-skin-sam .yui-dialog .ft span.default .first-child{border-color:#304369;}.yui-skin-sam .yui-dialog .ft span.default button{color:#fff;}.yui-skin-sam .yui-dialog .ft span.yui-button-disabled{background-position:0 -1500px;border-color:#ccc;}.yui-skin-sam .yui-dialog .ft span.yui-button-disabled .first-child{border-color:#ccc;}.yui-skin-sam .yui-dialog .ft span.yui-button-disabled button{color:#a6a6a6;}.yui-skin-sam .yui-simple-dialog .bd .yui-icon{background:url(../images/dataPicker/sprite.png) no-repeat 0 0;width:16px;height:16px;margin-right:10px;float:left;}.yui-skin-sam .yui-simple-dialog .bd span.blckicon{background-position:0 -1100px;}.yui-skin-sam .yui-simple-dialog .bd span.alrticon{background-position:0 -1050px;}.yui-skin-sam .yui-simple-dialog .bd span.hlpicon{background-position:0 -1150px;}.yui-skin-sam .yui-simple-dialog .bd span.infoicon{background-position:0 -1200px;}.yui-skin-sam .yui-simple-dialog .bd span.warnicon{background-position:0 -1900px;}.yui-skin-sam .yui-simple-dialog .bd span.tipicon{background-position:0 -1250px;}.yui-skin-sam .yui-tt .bd{position:relative;top:0;left:0;z-index:1;color:#000;padding:2px 5px;border-color:#D4C237 #A6982B #A6982B #A6982B;border-width:1px;border-style:solid;background-color:#FFEE69;}.yui-skin-sam .yui-tt.show-scrollbars .bd{overflow:auto;}.yui-skin-sam .yui-tt-shadow{top:2px;right:-3px;left:-3px;bottom:-3px;background-color:#000;}.yui-skin-sam .yui-tt-shadow-visible{opacity:.12;filter:alpha(opacity=12);}
+
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 2.8.1
+*/
+/* Panel modality mask styles */
+.yui-skin-sam .mask {
+    background-color: #000;
+    opacity: .25;
+    filter: alpha(opacity=25);  /* Set opacity in IE */
+}
+
+/* Panel styles */
+.yui-skin-sam .yui-panel-container {
+    padding:0 1px;
+    /* Padding added for IE to allow 0,0 alignment with shadow */
+    *padding:2px;
+}
+
+.yui-skin-sam .yui-panel {
+    position: relative;
+    left:0;
+    top:0;
+    border-style: solid;
+    border-width: 1px 0;
+    border-color: #808080;
+    z-index: 1;
+
+    /* Rollback rounded corner support for IE6/7 */
+    *border-width:1px;
+    *zoom:1;
+    _zoom:normal;
+}
+
+.yui-skin-sam .yui-panel .hd,
+.yui-skin-sam .yui-panel .bd,
+.yui-skin-sam .yui-panel .ft {
+    border-style: solid;
+    border-width: 0 1px;
+    border-color: #808080;
+    margin: 0 -1px;
+
+    /* Rollback rounded corner support for IE6/7 */
+    *margin:0;
+    *border:0;
+}
+
+.yui-skin-sam .yui-panel .hd {
+    border-bottom: solid 1px #ccc;
+}
+
+.yui-skin-sam .yui-panel .bd,
+.yui-skin-sam .yui-panel .ft {
+    background-color: #F2F2F2;
+}
+
+.yui-skin-sam .yui-panel .hd {
+    padding: 0 10px;
+    font-size: 93%;  /* 12px */
+    line-height: 2;  /* ~24px */
+    *line-height: 1.9; /* For IE */
+    font-weight: bold;
+    color: #000;
+    background: url(../images/dataPicker/sprite.png) repeat-x 0 -200px;
+}
+
+.yui-skin-sam .yui-panel .bd {
+    padding: 10px;
+}
+
+.yui-skin-sam .yui-panel .ft {
+    border-top: solid 1px #808080;
+    padding: 5px 10px;
+    font-size: 77%;
+}
+
+.yui-skin-sam .yui-panel-container.focused .yui-panel .hd {
+
+}
+
+.yui-skin-sam .container-close {
+    position: absolute;
+    top: 5px;
+    right: 6px;
+    width: 25px;
+    height: 15px;
+    background: url(../images/dataPicker/sprite.png) no-repeat 0 -300px;
+    cursor:pointer;
+}
+
+/* Panel underlay styles */
+.yui-skin-sam .yui-panel-container .underlay {
+    right: -1px;
+    left: -1px;
+}
+
+.yui-skin-sam .yui-panel-container.matte {
+    padding: 9px 10px;
+    background-color: #fff;
+}
+
+.yui-skin-sam .yui-panel-container.shadow {
+    /* IE 7 Quirks Mode and IE 6 Standards Mode and Quirks mode */
+    _padding: 2px 4px 0 2px;
+}
+
+.yui-skin-sam .yui-panel-container.shadow .underlay {
+    position: absolute;
+    top: 2px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+
+    /* IE7 Strict (provides 3px shadow (when combined with 2px padding applied to container) */
+    *top: 4px;
+    *left: -1px;
+    *right: -1px;
+    *bottom: -1px;
+
+    /* IE 7 Quirks Mode and IE 6 Standards Mode and Quirks mode */
+    _top: 0;
+    _left: 0;
+    _right: 0;
+    _bottom: 0;
+    _margin-top: 3px;
+    _margin-left: -1px;
+
+    background-color: #000;
+    opacity: .12;
+    filter: alpha(opacity=12);  /* Set opacity in IE */
+}
+
+
+/* Dialog styles */
+.yui-skin-sam .yui-dialog .ft {
+    border-top: none;
+    padding: 0 10px 10px 10px;
+    font-size: 100%;
+}
+
+.yui-skin-sam .yui-dialog .ft .button-group {
+    display: block;
+    text-align: center;
+}
+
+/* Dialog default button style */
+.yui-skin-sam .yui-dialog .ft button.default {
+    font-weight:bold;
+}
+
+/* Dialog default YUI Button style */
+.yui-skin-sam .yui-dialog .ft span.default {
+    border-color: #304369;
+    background-position: 0 -1400px;
+}
+
+.yui-skin-sam .yui-dialog .ft span.default .first-child {
+    border-color: #304369;
+}
+
+.yui-skin-sam .yui-dialog .ft span.default button {
+    color: #fff;
+}
+
+/* Dialog YUI Button disabled state */
+.yui-skin-sam .yui-dialog .ft span.yui-button-disabled {
+    background-position:0pt -1500px;
+    border-color:#ccc;
+}
+
+.yui-skin-sam .yui-dialog .ft span.yui-button-disabled .first-child {
+    border-color:#ccc;
+}
+
+.yui-skin-sam .yui-dialog .ft span.yui-button-disabled button {
+    color:#a6a6a6;
+}
+
+/* SimpleDialog icon styles */
+.yui-skin-sam .yui-simple-dialog .bd .yui-icon {
+    background: url(../images/dataPicker/sprite.png) no-repeat 0 0;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    float: left;
+}
+
+.yui-skin-sam .yui-simple-dialog .bd span.blckicon {
+    background-position: 0 -1100px;
+}
+
+.yui-skin-sam .yui-simple-dialog .bd span.alrticon {
+    background-position: 0 -1050px;
+}
+
+.yui-skin-sam .yui-simple-dialog .bd span.hlpicon {
+    background-position: 0 -1150px;
+}
+
+.yui-skin-sam .yui-simple-dialog .bd span.infoicon {
+    background-position: 0 -1200px;
+}
+
+.yui-skin-sam .yui-simple-dialog .bd span.warnicon {
+    background-position: 0 -1900px;
+}
+
+.yui-skin-sam .yui-simple-dialog .bd span.tipicon {
+    background-position: 0 -1250px;
+}
+
+/* Tooltip styles */
+.yui-skin-sam .yui-tt .bd {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    color: #000;
+    padding: 2px 5px;
+    border-color: #D4C237 #A6982B #A6982B #A6982B;
+    border-width: 1px;
+    border-style: solid;
+    background-color: #FFEE69;
+}
+
+.yui-skin-sam .yui-tt.show-scrollbars .bd {
+    overflow: auto;
+}
+
+.yui-skin-sam .yui-tt-shadow {
+    top: 2px;
+    right: -3px;
+    left: -3px;
+    bottom: -3px;
+    background-color: #000;
+}
+
+.yui-skin-sam .yui-tt-shadow-visible {
+    opacity: .12;
+    filter: alpha(opacity=12);  /* For IE */
+}
+
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 2.8.1
+*/
+.yui-resize{position:relative;zoom:1;z-index:0;}.yui-resize-wrap{zoom:1;}.yui-draggable{cursor:move;}.yui-resize .yui-resize-handle{position:absolute;z-index:1;font-size:0;margin:0;padding:0;zoom:1;height:1px;width:1px;}.yui-resize .yui-resize-handle-br{height:5px;width:5px;bottom:0;right:0;cursor:se-resize;z-index:2;zoom:1;}.yui-resize .yui-resize-handle-bl{height:5px;width:5px;bottom:0;left:0;cursor:sw-resize;z-index:2;zoom:1;}.yui-resize .yui-resize-handle-tl{height:5px;width:5px;top:0;left:0;cursor:nw-resize;z-index:2;zoom:1;}.yui-resize .yui-resize-handle-tr{height:5px;width:5px;top:0;right:0;cursor:ne-resize;z-index:2;zoom:1;}.yui-resize .yui-resize-handle-r{width:5px;height:100%;top:0;right:0;cursor:e-resize;zoom:1;}.yui-resize .yui-resize-handle-l{height:100%;width:5px;top:0;left:0;cursor:w-resize;zoom:1;}.yui-resize .yui-resize-handle-b{width:100%;height:5px;bottom:0;right:0;cursor:s-resize;zoom:1;}.yui-resize .yui-resize-handle-t{width:100%;height:5px;top:0;right:0;cursor:n-resize;zoom:1;}.yui-resize-proxy{position:absolute;border:1px dashed #000;visibility:hidden;z-index:1000;}.yui-resize-hover .yui-resize-handle,.yui-resize-hidden .yui-resize-handle{opacity:0;filter:alpha(opacity=0);}.yui-resize-ghost{opacity:.5;filter:alpha(opacity=50);}.yui-resize-knob .yui-resize-handle{height:6px;width:6px;}.yui-resize-knob .yui-resize-handle-tr{right:-3px;top:-3px;}.yui-resize-knob .yui-resize-handle-tl{left:-3px;top:-3px;}.yui-resize-knob .yui-resize-handle-bl{left:-3px;bottom:-3px;}.yui-resize-knob .yui-resize-handle-br{right:-3px;bottom:-3px;}.yui-resize-knob .yui-resize-handle-t{left:45%;top:-3px;}.yui-resize-knob .yui-resize-handle-r{right:-3px;top:45%;}.yui-resize-knob .yui-resize-handle-l{left:-3px;top:45%;}.yui-resize-knob .yui-resize-handle-b{left:45%;bottom:-3px;}.yui-resize-status{position:absolute;top:-999px;left:-999px;padding:2px;font-size:80%;display:none;zoom:1;z-index:9999;}.yui-resize-status strong,.yui-resize-status em{font-weight:normal;font-style:normal;padding:1px;zoom:1;}.yui-skin-sam .yui-resize .yui-resize-handle{background-color:#F2F2F2;zoom:1;}.yui-skin-sam .yui-resize .yui-resize-handle-active{background-color:#7D98B8;zoom:1;}.yui-skin-sam .yui-resize .yui-resize-handle-l,.yui-skin-sam .yui-resize .yui-resize-handle-r,.yui-skin-sam .yui-resize .yui-resize-handle-l-active,.yui-skin-sam .yui-resize .yui-resize-handle-r-active{height:100%;zoom:1;}.yui-skin-sam .yui-resize-knob .yui-resize-handle{border:1px solid #808080;}.yui-skin-sam .yui-resize-hover .yui-resize-handle-active{opacity:1;filter:alpha(opacity=100);}.yui-skin-sam .yui-resize-proxy{border:1px dashed #426FD9;}.yui-skin-sam .yui-resize-status{border:1px solid #A6982B;border-top:1px solid #D4C237;background-color:#FFEE69;color:#000;}.yui-skin-sam .yui-resize-status strong,.yui-skin-sam .yui-resize-status em{float:left;display:block;clear:both;padding:1px;text-align:center;}.yui-skin-sam .yui-resize .yui-resize-handle-inner-r,.yui-skin-sam .yui-resize .yui-resize-handle-inner-l{background:transparent url(../images/dataPicker/layout_sprite.png) no-repeat 0 -5px;height:16px;width:5px;position:absolute;top:45%;}.yui-skin-sam .yui-resize .yui-resize-handle-inner-t,.yui-skin-sam .yui-resize .yui-resize-handle-inner-b{background:transparent url(../images/dataPicker/layout_sprite.png) no-repeat -20px 0;height:5px;width:16px;position:absolute;left:50%;}.yui-skin-sam .yui-resize .yui-resize-handle-br{background-image:url(../images/dataPicker/layout_sprite.png);background-repeat:no-repeat;background-position:-22px -62px;}.yui-skin-sam .yui-resize .yui-resize-handle-tr{background-image:url(../images/dataPicker/layout_sprite.png);background-repeat:no-repeat;background-position:-22px -42px;}.yui-skin-sam .yui-resize .yui-resize-handle-tl{background-image:url(../images/dataPicker/layout_sprite.png);background-repeat:no-repeat;background-position:-22px -82px;}.yui-skin-sam .yui-resize .yui-resize-handle-bl{background-image:url(../images/dataPicker/layout_sprite.png);background-repeat:no-repeat;background-position:-22px -23px;}.yui-skin-sam .yui-resize-knob .yui-resize-handle-t,.yui-skin-sam .yui-resize-knob .yui-resize-handle-r,.yui-skin-sam .yui-resize-knob .yui-resize-handle-b,.yui-skin-sam .yui-resize-knob .yui-resize-handle-l,.yui-skin-sam .yui-resize-knob .yui-resize-handle-tl,.yui-skin-sam .yui-resize-knob .yui-resize-handle-tr,.yui-skin-sam .yui-resize-knob .yui-resize-handle-bl,.yui-skin-sam .yui-resize-knob .yui-resize-handle-br,.yui-skin-sam .yui-resize-knob .yui-resize-handle-inner-t,.yui-skin-sam .yui-resize-knob .yui-resize-handle-inner-r,.yui-skin-sam .yui-resize-knob .yui-resize-handle-inner-b,.yui-skin-sam .yui-resize-knob .yui-resize-handle-inner-l,.yui-skin-sam .yui-resize-knob .yui-resize-handle-inner-tl,.yui-skin-sam .yui-resize-knob .yui-resize-handle-inner-tr,.yui-skin-sam .yui-resize-knob .yui-resize-handle-inner-bl,.yui-skin-sam .yui-resize-knob .yui-resize-handle-inner-br{background-image:none;}.yui-skin-sam .yui-resize-knob .yui-resize-handle-l,.yui-skin-sam .yui-resize-knob .yui-resize-handle-r,.yui-skin-sam .yui-resize-knob .yui-resize-handle-l-active,.yui-skin-sam .yui-resize-knob .yui-resize-handle-r-active{height:6px;width:6px;}.yui-skin-sam .yui-resize-textarea .yui-resize-handle-r{right:-8px;}.yui-skin-sam .yui-resize-textarea .yui-resize-handle-b{bottom:-8px;}.yui-skin-sam .yui-resize-textarea .yui-resize-handle-br{right:-8px;bottom:-8px;}
+
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 2.8.1
+*/
+/* Give the handle a background color */
+.yui-skin-sam .yui-resize .yui-resize-handle {
+    background-color: #F2F2F2;
+    zoom: 1;
+}
+/* Give the active handle a different color */
+.yui-skin-sam .yui-resize .yui-resize-handle-active {
+    background-color: #7D98B8;
+    zoom: 1;
+}
+.yui-skin-sam .yui-resize .yui-resize-handle-l,
+.yui-skin-sam .yui-resize .yui-resize-handle-r,
+.yui-skin-sam .yui-resize .yui-resize-handle-l-active,
+.yui-skin-sam .yui-resize .yui-resize-handle-r-active {
+    height: 100%;
+    zoom: 1;
+}
+/* Give a border to the 8-way knob style handles */
+.yui-skin-sam .yui-resize-knob .yui-resize-handle {
+    border: 1px solid #808080;
+}
+/* Show the active handle when hovered */
+.yui-skin-sam .yui-resize-hover .yui-resize-handle-active {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+/* Style the resize proxy */
+.yui-skin-sam .yui-resize-proxy {
+    border: 1px dashed #426FD9;
+}
+
+/* Style the status box similar to a tooltip */
+.yui-skin-sam .yui-resize-status {
+    border: 1px solid #A6982B;
+    border-top: 1px solid #D4C237;
+    background-color: #FFEE69;
+    color: #000;
+}
+
+
+/* Style the content of the status box */
+.yui-skin-sam .yui-resize-status strong, .yui-skin-sam .yui-resize-status em {
+    float: left;
+    display: block;
+    clear: both;
+    padding: 1px;
+    text-align: center;
+}
+
+/* Setup the gripper */
+.yui-skin-sam .yui-resize .yui-resize-handle-inner-r,
+.yui-skin-sam .yui-resize .yui-resize-handle-inner-l {
+    background: transparent url(../images/dataPicker/layout_sprite.png) no-repeat 0 -5px;
+    height: 16px;
+    width: 5px;
+    position: absolute;
+    top: 45%;
+}
+
+/* Setup the gripper */
+.yui-skin-sam .yui-resize .yui-resize-handle-inner-t,
+.yui-skin-sam .yui-resize .yui-resize-handle-inner-b {
+    background: transparent url(../images/dataPicker/layout_sprite.png) no-repeat -20px 0;
+    height: 5px;
+    width: 16px;
+    position: absolute;
+    left: 50%;
+}
+
+/* Bottom Right Gripper */
+.yui-skin-sam .yui-resize .yui-resize-handle-br {
+    background-image: url(../images/dataPicker/layout_sprite.png );
+    background-repeat: no-repeat;
+    background-position: -22px -62px;
+}
+
+/* Top Right Gripper */
+.yui-skin-sam .yui-resize .yui-resize-handle-tr {
+    background-image: url(../images/dataPicker/layout_sprite.png );
+    background-repeat: no-repeat;
+    background-position: -22px -42px;
+}
+
+/* Top Left Gripper */
+.yui-skin-sam .yui-resize .yui-resize-handle-tl {
+    background-image: url(../images/dataPicker/layout_sprite.png );
+    background-repeat: no-repeat;
+    background-position: -22px -82px;
+}
+
+/* Bottom Left Gripper */
+.yui-skin-sam .yui-resize .yui-resize-handle-bl {
+    background-image: url(../images/dataPicker/layout_sprite.png );
+    background-repeat: no-repeat;
+    background-position: -22px -23px;
+}
+
+/* Remove the background image from the 8-way knobs */
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-t,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-r,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-b,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-l,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-tl,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-tr,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-bl,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-br,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-inner-t,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-inner-r,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-inner-b,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-inner-l,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-inner-tl,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-inner-tr,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-inner-bl,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-inner-br {
+    background-image: none;
+}
+
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-l,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-r,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-l-active,
+.yui-skin-sam .yui-resize-knob .yui-resize-handle-r-active {
+    height: 6px;
+    width: 6px;
+}
+
+.yui-skin-sam .yui-resize-textarea .yui-resize-handle-r {
+    right: -8px;
+}
+.yui-skin-sam .yui-resize-textarea .yui-resize-handle-b {
+    bottom: -8px;
+}
+.yui-skin-sam .yui-resize-textarea .yui-resize-handle-br {
+    right: -8px;
+    bottom: -8px;
+}
+
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 2.8.1
+*/
+.yui-navset .yui-nav li,
+.yui-navset .yui-navset-top .yui-nav li,
+.yui-navset .yui-navset-bottom .yui-nav li
+{margin:0 .5em 0 0;}
+
+.yui-navset-left .yui-nav li,
+.yui-navset-right .yui-nav li
+{margin:0 0 .5em;}
+
+.yui-navset .yui-content .yui-hidden
+{border:0;height:0;width:0;padding:0;position:absolute;left:-999999px;overflow:hidden;visibility:hidden;}
+
+.yui-navset .yui-navset-left .yui-nav,
+.yui-navset .yui-navset-right .yui-nav,
+.yui-navset-left .yui-nav,.yui-navset-right .yui-nav
+{width:6em;}
+
+.yui-navset-top .yui-nav,
+.yui-navset-bottom .yui-nav
+{width:auto;}
+
+.yui-navset .yui-navset-left,.yui-navset-left
+{padding:0 0 0 6em;}
+
+.yui-navset-right
+{padding:0 6em 0 0;}
+
+.yui-navset-top,
+.yui-navset-bottom
+{padding:auto;}
+
+.yui-nav,
+.yui-nav li
+{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+.yui-navset li em
+{font-style:normal;}
+
+.yui-navset
+{position:relative;zoom:1;}
+
+.yui-navset .yui-content,
+.yui-navset .yui-content div
+{zoom:1;}
+
+.yui-navset .yui-content:after
+{
+	content:'';
+	display:block;
+	clear:both;
+}
+
+.yui-navset .yui-nav li,
+.yui-navset .yui-navset-top .yui-nav li,
+.yui-navset .yui-navset-bottom .yui-nav li
+{
+	display:inline-block;
+	display:-moz-inline-stack;
+	*display:inline;
+	vertical-align:bottom;
+	cursor:pointer;
+	zoom:1;
+}
+
+.yui-navset-left .yui-nav li,
+.yui-navset-right .yui-nav li
+{display:block;}
+
+.yui-navset .yui-nav a
+{position:relative;}
+
+.yui-navset .yui-nav li a,
+.yui-navset-top .yui-nav li a,
+.yui-navset-bottom .yui-nav li a
+{
+	display:block;
+	display:inline-block;
+	vertical-align:bottom;
+	zoom:1;
+}
+
+.yui-navset-left .yui-nav li a,
+.yui-navset-right .yui-nav li a
+{display:block;}
+
+.yui-navset-bottom .yui-nav li a
+{vertical-align:text-top;}
+
+.yui-navset .yui-nav li a em,
+.yui-navset-top .yui-nav li a em,
+.yui-navset-bottom .yui-nav li a em
+{display:block;}
+
+.yui-navset .yui-navset-left .yui-nav,
+.yui-navset .yui-navset-right .yui-nav,
+.yui-navset-left .yui-nav,.yui-navset-right .yui-nav
+{position:absolute;z-index:1;}
+
+.yui-navset-top .yui-nav,
+.yui-navset-bottom .yui-nav
+{position:static;}
+
+.yui-navset .yui-navset-left .yui-nav,
+.yui-navset-left .yui-nav
+{left:0;right:auto;}
+
+.yui-navset .yui-navset-right .yui-nav,
+.yui-navset-right .yui-nav
+{right:0;left:auto;}
+
+.yui-skin-sam .yui-navset .yui-nav,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav
+{
+	/*border:solid #2647a0;
+	border-width:2px;*/
+	zoom:1;
+}
+
+.yui-skin-sam .yui-navset .yui-nav li,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav li
+{margin:0 .16em 0 0;padding:1px 0 0;zoom:1;}
+
+.yui-skin-sam .yui-navset .yui-nav .selected,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav .selected
+{margin:0 .16em -1px 0;}
+
+.yui-skin-sam .yui-navset .yui-nav a,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav a
+{background:#d8d8d8 url(../images/dataPicker/sprite.png) repeat-x;border:solid #a3a3a3;border-width:0 1px;color:#000;position:relative;text-decoration:none;}
+
+.yui-skin-sam .yui-navset .yui-nav a em,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav a em
+{border:solid #a3a3a3;border-width:1px 0 0;cursor:hand;padding:.25em .75em;left:0;right:0;bottom:0;top:-1px;position:relative;}
+
+.yui-skin-sam .yui-navset .yui-nav .selected a,
+.yui-skin-sam .yui-navset .yui-nav .selected a:focus,
+.yui-skin-sam .yui-navset .yui-nav .selected a:hover
+{background:#2647a0 url(../images/dataPicker/sprite.png) repeat-x left -1400px;color:#fff;}
+
+.yui-skin-sam .yui-navset .yui-nav a:hover,
+.yui-skin-sam .yui-navset .yui-nav a:focus
+{background:#bfdaff url(../images/dataPicker/sprite.png) repeat-x left -1300px;outline:0;}
+
+.yui-skin-sam .yui-navset .yui-nav .selected a em
+{padding:.35em .75em;}
+
+.yui-skin-sam .yui-navset .yui-nav .selected a,
+.yui-skin-sam .yui-navset .yui-nav .selected a em
+{border-color:#243356;}
+
+.yui-skin-sam .yui-navset .yui-content
+{background:#edf5ff;}
+
+.yui-skin-sam .yui-navset .yui-content,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-content
+{border:1px solid #808080;border-top-color:#243356;padding:.25em .5em;}
+
+.yui-skin-sam .yui-navset-left .yui-nav,
+.yui-skin-sam .yui-navset .yui-navset-left .yui-nav,
+.yui-skin-sam .yui-navset .yui-navset-right .yui-nav,
+.yui-skin-sam .yui-navset-right .yui-nav
+{border-width:0 5px 0 0;Xposition:absolute;top:0;bottom:0;}
+
+.yui-skin-sam .yui-navset .yui-navset-right .yui-nav,
+.yui-skin-sam .yui-navset-right .yui-nav
+{border-width:0 0 0 5px;}
+
+.yui-skin-sam .yui-navset-left .yui-nav li,
+.yui-skin-sam .yui-navset .yui-navset-left .yui-nav li,
+.yui-skin-sam .yui-navset-right .yui-nav li
+{margin:0 0 .16em;padding:0 0 0 1px;}
+
+.yui-skin-sam .yui-navset-right .yui-nav li
+{padding:0 1px 0 0;}
+
+.yui-skin-sam .yui-navset-left .yui-nav .selected,
+.yui-skin-sam .yui-navset .yui-navset-left .yui-nav .selected
+{margin:0 -1px .16em 0;}
+
+.yui-skin-sam .yui-navset-right .yui-nav .selected
+{margin:0 0 .16em -1px;}
+
+.yui-skin-sam .yui-navset-left .yui-nav a,
+.yui-skin-sam .yui-navset-right .yui-nav a
+{border-width:1px 0;}
+
+.yui-skin-sam .yui-navset-left .yui-nav a em,
+.yui-skin-sam .yui-navset .yui-navset-left .yui-nav a em,
+.yui-skin-sam .yui-navset-right .yui-nav a em
+{border-width:0 0 0 1px;padding:.2em .75em;top:auto;left:-1px;}
+
+.yui-skin-sam .yui-navset-right .yui-nav a em
+{border-width:0 1px 0 0;left:auto;right:-1px;}
+
+.yui-skin-sam .yui-navset-left .yui-nav a,
+.yui-skin-sam .yui-navset-left .yui-nav .selected a,
+.yui-skin-sam .yui-navset-left .yui-nav a:hover,
+.yui-skin-sam .yui-navset-right .yui-nav a,.yui-skin-sam .yui-navset-right .yui-nav .selected a,
+.yui-skin-sam .yui-navset-right .yui-nav a:hover,.yui-skin-sam .yui-navset-bottom .yui-nav a,
+.yui-skin-sam .yui-navset-bottom .yui-nav .selected a,
+.yui-skin-sam .yui-navset-bottom .yui-nav a:hover
+{background-image:none;}
+
+.yui-skin-sam .yui-navset-left .yui-content
+{border:1px solid #808080;border-left-color:#243356;}
+
+.yui-skin-sam .yui-navset-bottom .yui-nav,
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav
+{border-width:5px 0 0;}
+
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav .selected,
+.yui-skin-sam .yui-navset-bottom .yui-nav .selected
+{margin:-1px .16em 0 0;}
+
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav li,
+.yui-skin-sam .yui-navset-bottom .yui-nav li
+{padding:0 0 1px 0;vertical-align:top;}
+
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav a em,
+.yui-skin-sam .yui-navset-bottom .yui-nav a em
+{border-width:0 0 1px;top:auto;bottom:-1px;}
+
+.yui-skin-sam .yui-navset-bottom .yui-content,
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-content
+{border:1px solid #808080;border-bottom-color:#243356;}
+
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 2.8.1
+*/
+/* .yui-navset defaults to .yui-navset-top */
+.yui-skin-sam .yui-navset .yui-nav,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav { /* protect nested tabviews from other orientations */
+    border:solid #2647a0; /* color between tab list and content */
+    border-width:0 0 5px;
+    zoom:1;
+}
+
+.yui-skin-sam .yui-navset .yui-nav li,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav li {
+    margin:0 0.16em 0 0; /* space between tabs */
+    padding:1px 0 0; /* gecko: make room for overflow */
+    zoom:1;
+}
+
+.yui-skin-sam .yui-navset .yui-nav .selected,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav .selected { 
+    margin:0 0.16em -1px 0; /* for overlap */
+}
+
+.yui-skin-sam .yui-navset .yui-nav a,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav a {
+    background:#d8d8d8 url(../images/dataPicker/sprite.png) repeat-x; /* tab background */
+    border:solid #a3a3a3;
+    border-width:0 1px;
+    color:#000;
+    position:relative;
+    text-decoration:none;
+}
+
+.yui-skin-sam .yui-navset .yui-nav a em,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-nav a em {
+    border:solid #a3a3a3;
+    border-width:1px 0 0;
+    cursor:hand;
+    padding:0.25em .75em;
+    left:0; right: 0; bottom: 0; /* protect from other orientations */
+    top:-1px; /* for 1px rounded corners */
+    position:relative;
+}
+
+.yui-skin-sam .yui-navset .yui-nav .selected a,
+.yui-skin-sam .yui-navset .yui-nav .selected a:focus, /* no focus effect for selected */
+.yui-skin-sam .yui-navset .yui-nav .selected a:hover { /* no hover effect for selected */
+    background:#2647a0 url(../images/dataPicker/sprite.png) repeat-x left -1400px; /* selected tab background */
+    color:#fff;
+}
+
+.yui-skin-sam .yui-navset .yui-nav a:hover,
+.yui-skin-sam .yui-navset .yui-nav a:focus {
+    background:#bfdaff url(../images/dataPicker/sprite.png) repeat-x left -1300px; /* selected tab background */
+    outline:0;
+}
+
+.yui-skin-sam .yui-navset .yui-nav .selected a em {
+    padding:0.35em 0.75em; /* raise selected tab */
+}
+
+.yui-skin-sam .yui-navset .yui-nav .selected a,
+.yui-skin-sam .yui-navset .yui-nav .selected a em {
+    border-color:#243356; /* selected tab border color */
+}
+
+.yui-skin-sam .yui-navset .yui-content {
+    background:#edf5ff; /* content background color */
+}
+
+.yui-skin-sam .yui-navset .yui-content,
+.yui-skin-sam .yui-navset .yui-navset-top .yui-content {
+    border:1px solid #808080; /* content border */
+    border-top-color:#243356; /* different border color */
+    padding:0.25em 0.5em; /* content padding */
+}
+
+/* left and right orientations */
+.yui-skin-sam .yui-navset-left .yui-nav,
+.yui-skin-sam .yui-navset .yui-navset-left .yui-nav,
+.yui-skin-sam .yui-navset .yui-navset-right .yui-nav,
+.yui-skin-sam .yui-navset-right .yui-nav {
+    border-width:0 5px 0 0;
+    Xposition:absolute; /* from tabview-core; have to reiterate for skin-sam due to pos:rel on skin-sam yui-nav */
+    top:0; bottom:0; /* stretch to fill content height */
+}
+
+.yui-skin-sam .yui-navset .yui-navset-right .yui-nav,
+.yui-skin-sam .yui-navset-right .yui-nav {
+    border-width:0 0 0 5px;
+}
+
+.yui-skin-sam .yui-navset-left .yui-nav li,
+.yui-skin-sam .yui-navset .yui-navset-left .yui-nav li,
+.yui-skin-sam .yui-navset-right .yui-nav li {
+    margin:0 0 0.16em; /* space between tabs */
+    padding:0 0 0 1px; /* gecko: make room for overflow */
+}
+
+.yui-skin-sam .yui-navset-right .yui-nav li {
+    padding:0 1px 0 0; /* gecko: make room for overflow */
+}
+
+.yui-skin-sam .yui-navset-left .yui-nav .selected,
+.yui-skin-sam .yui-navset .yui-navset-left .yui-nav .selected { 
+    margin:0 -1px 0.16em 0;
+}
+
+.yui-skin-sam .yui-navset-right .yui-nav .selected { 
+    margin:0 0 0.16em -1px;
+}
+
+.yui-skin-sam .yui-navset-left .yui-nav a,
+.yui-skin-sam .yui-navset-right .yui-nav a {
+    border-width:1px 0;
+}
+
+.yui-skin-sam .yui-navset-left .yui-nav a em,
+.yui-skin-sam .yui-navset .yui-navset-left .yui-nav a em,
+.yui-skin-sam .yui-navset-right .yui-nav a em {
+    border-width:0 0 0 1px;
+    padding:0.2em .75em;
+    top:auto;
+    left:-1px; /* for 1px rounded corners */
+}
+
+.yui-skin-sam .yui-navset-right .yui-nav a em {
+    border-width:0 1px 0 0;
+    left:auto;
+    right:-1px; /* for 1px rounded corners */
+}
+
+.yui-skin-sam .yui-navset-left .yui-nav a,
+.yui-skin-sam .yui-navset-left .yui-nav .selected a,
+.yui-skin-sam .yui-navset-left .yui-nav a:hover,
+.yui-skin-sam .yui-navset-right .yui-nav a,
+.yui-skin-sam .yui-navset-right .yui-nav .selected a,
+.yui-skin-sam .yui-navset-right .yui-nav a:hover,
+.yui-skin-sam .yui-navset-bottom .yui-nav a,
+.yui-skin-sam .yui-navset-bottom .yui-nav .selected a,
+.yui-skin-sam .yui-navset-bottom .yui-nav a:hover {
+    background-image:none; /* no left-right or bottom-top gradient */
+}
+
+.yui-skin-sam .yui-navset-left .yui-content {
+    border:1px solid #808080; /* content border */
+    border-left-color:#243356; /* different border color */
+}
+
+/* bottom orientation */
+.yui-skin-sam .yui-navset-bottom .yui-nav,
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav {
+    border-width:5px 0 0; /* color between tab list and content */
+}
+
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav .selected,
+.yui-skin-sam .yui-navset-bottom .yui-nav .selected { 
+    margin:-1px 0.16em 0 0; /* for overlap */
+}
+
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav li,
+.yui-skin-sam .yui-navset-bottom .yui-nav li { 
+    padding:0 0 1px 0; /* gecko: make room for overflow */
+    vertical-align:top;
+}
+
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav li a,
+.yui-skin-sam .yui-navset-bottom .yui-nav li a { 
+}
+
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-nav a em,
+.yui-skin-sam .yui-navset-bottom .yui-nav a em {
+    border-width:0 0 1px;
+    top:auto;
+    bottom:-1px; /* for 1px rounded corners */
+}
+
+.yui-skin-sam .yui-navset-bottom .yui-content,
+.yui-skin-sam .yui-navset .yui-navset-bottom .yui-content {
+    border:1px solid #808080; /* content border */
+    border-bottom-color:#243356; /* different border color */
+}
+
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 2.8.1
+*/
+.yui-calcontainer{position:relative;float:left;_overflow:hidden;}.yui-calcontainer iframe{position:absolute;border:none;margin:0;padding:0;z-index:0;width:100%;height:100%;left:0;top:0;}.yui-calcontainer iframe.fixedsize{width:50em;height:50em;top:-1px;left:-1px;}.yui-calcontainer.multi .groupcal{z-index:1;float:left;position:relative;}.yui-calcontainer .title{position:relative;z-index:1;}.yui-calcontainer .close-icon{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden;}.yui-calendar{position:relative;}.yui-calendar .calnavleft{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden;}.yui-calendar .calnavright{position:absolute;z-index:1;text-indent:-10000em;overflow:hidden;}.yui-calendar .calheader{position:relative;width:100%;text-align:center;}.yui-calcontainer .yui-cal-nav-mask{position:absolute;z-index:2;margin:0;padding:0;width:100%;height:100%;_width:0;_height:0;left:0;top:0;display:none;}.yui-calcontainer .yui-cal-nav{position:absolute;z-index:3;top:0;display:none;}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{display:-moz-inline-box;display:inline-block;}.yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{display:block;*display:inline-block;*overflow:visible;border:none;background-color:transparent;cursor:pointer;}.yui-calendar .calbody a:hover{background:inherit;}p#clear{clear:left;padding-top:10px;}.yui-skin-sam .yui-calcontainer{background-color:#f2f2f2;border:1px solid #808080;padding:10px;}.yui-skin-sam .yui-calcontainer.multi{padding:0 5px 0 5px;}.yui-skin-sam .yui-calcontainer.multi .groupcal{background-color:transparent;border:none;padding:10px 5px 10px 5px;margin:0;}.yui-skin-sam .yui-calcontainer .title{background:url(../images/dataPicker/sprite.png) repeat-x 0 0;border-bottom:1px solid #ccc;font:100% sans-serif;color:#000;font-weight:bold;height:auto;padding:.4em;margin:0 -10px 10px -10px;top:0;left:0;text-align:left;}.yui-skin-sam .yui-calcontainer.multi .title{margin:0 -5px 0 -5px;}.yui-skin-sam .yui-calcontainer.withtitle{padding-top:0;}.yui-skin-sam .yui-calcontainer .calclose{background:url(../images/dataPicker/sprite.png) no-repeat 0 -300px;width:25px;height:15px;top:.4em;right:.4em;cursor:pointer;}.yui-skin-sam .yui-calendar{border-spacing:0;border-collapse:collapse;font:100% sans-serif;text-align:center;margin:0;}.yui-skin-sam .yui-calendar .calhead{background:transparent;border:none;vertical-align:middle;padding:0;}.yui-skin-sam .yui-calendar .calheader{background:transparent;font-weight:bold;padding:0 0 .6em 0;text-align:center;}.yui-skin-sam .yui-calendar .calheader img{border:none;}.yui-skin-sam .yui-calendar .calnavleft{background:url(../images/dataPicker/sprite.png) no-repeat 0 -450px;width:25px;height:15px;top:0;bottom:0;left:-10px;margin-left:.4em;cursor:pointer;}.yui-skin-sam .yui-calendar .calnavright{background:url(../images/dataPicker/sprite.png) no-repeat 0 -500px;width:25px;height:15px;top:0;bottom:0;right:-10px;margin-right:.4em;cursor:pointer;}.yui-skin-sam .yui-calendar .calweekdayrow{height:2em;}.yui-skin-sam .yui-calendar .calweekdayrow th{padding:0;border:none;}.yui-skin-sam .yui-calendar .calweekdaycell{color:#000;font-weight:bold;text-align:center;width:2em;}.yui-skin-sam .yui-calendar .calfoot{background-color:#f2f2f2;}.yui-skin-sam .yui-calendar .calrowhead,.yui-skin-sam .yui-calendar .calrowfoot{color:#a6a6a6;font-size:85%;font-style:normal;font-weight:normal;border:none;}.yui-skin-sam .yui-calendar .calrowhead{text-align:right;padding:0 2px 0 0;}.yui-skin-sam .yui-calendar .calrowfoot{text-align:left;padding:0 0 0 2px;}.yui-skin-sam .yui-calendar td.calcell{border:1px solid #ccc;background:#fff;padding:1px;height:1.6em;line-height:1.6em;text-align:center;white-space:nowrap;}.yui-skin-sam .yui-calendar td.calcell a{color:#06c;display:block;height:100%;text-decoration:none;}.yui-skin-sam .yui-calendar td.calcell.today{background-color:#000;}.yui-skin-sam .yui-calendar td.calcell.today a{background-color:#fff;}.yui-skin-sam .yui-calendar td.calcell.oom{background-color:#ccc;color:#a6a6a6;cursor:default;}.yui-skin-sam .yui-calendar td.calcell.selected{background-color:#fff;color:#000;}.yui-skin-sam .yui-calendar td.calcell.selected a{background-color:#b3d4ff;color:#000;}.yui-skin-sam .yui-calendar td.calcell.calcellhover{background-color:#426fd9;color:#fff;cursor:pointer;}.yui-skin-sam .yui-calendar td.calcell.calcellhover a{background-color:#426fd9;color:#fff;}.yui-skin-sam .yui-calendar td.calcell.previous{color:#e0e0e0;}.yui-skin-sam .yui-calendar td.calcell.restricted{text-decoration:line-through;}.yui-skin-sam .yui-calendar td.calcell.highlight1{background-color:#cf9;}.yui-skin-sam .yui-calendar td.calcell.highlight2{background-color:#9cf;}.yui-skin-sam .yui-calendar td.calcell.highlight3{background-color:#fcc;}.yui-skin-sam .yui-calendar td.calcell.highlight4{background-color:#cf9;}.yui-skin-sam .yui-calendar a.calnav{border:1px solid #f2f2f2;padding:0 4px;text-decoration:none;color:#000;zoom:1;}.yui-skin-sam .yui-calendar a.calnav:hover{background:url(../images/dataPicker/sprite.png) repeat-x 0 0;border-color:#A0A0A0;cursor:pointer;}.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask{background-color:#000;opacity:.25;filter:alpha(opacity=25);}.yui-skin-sam .yui-calcontainer .yui-cal-nav{font-family:arial,helvetica,clean,sans-serif;font-size:93%;border:1px solid #808080;left:50%;margin-left:-7em;width:14em;padding:0;top:2.5em;background-color:#f2f2f2;}.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav{top:4.5em;}.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav{width:16em;margin-left:-8em;}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{padding:5px 10px 5px 10px;}.yui-skin-sam .yui-calcontainer .yui-cal-nav-b{text-align:center;}.yui-skin-sam .yui-calcontainer .yui-cal-nav-e{margin-top:5px;padding:5px;background-color:#EDF5FF;border-top:1px solid black;display:none;}.yui-skin-sam .yui-calcontainer .yui-cal-nav label{display:block;font-weight:bold;}
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc{width:100%;_width:auto;}.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid{background-color:#FFEE69;border:1px solid #000;}.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc{width:4em;}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn{border:1px solid #808080;background:url(../images/dataPicker/sprite.png) repeat-x 0 0;background-color:#ccc;margin:auto .15em;}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button{padding:0 8px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000;}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default{border:1px solid #304369;background-color:#426fd9;background:url(../images/dataPicker/sprite.png) repeat-x 0 -1400px;}.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button{color:#fff;}
+
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 2.8.1
+*/
+/**
+ * SAM
+ *
+ * Skin colors used:
+ *
+ * - Control Border : 808080
+ * - Control Chrome : f2f2f2
+ * - Cell Borders : cccccc
+ * - Normal Cell BG : ffffff
+ * - Date Links : 0066cc
+ * - Selected Cells BG : b3d4ff
+ * - Cell Hover BG : 426fd9
+ * - Disabled BG : cccccc
+ * - Disabled Text Color : a6a6a6
+ **/
+
+/* CALENDAR BOUNDING BOX */
+.yui-skin-sam .yui-calcontainer {
+	background-color:#f2f2f2;
+	border:1px solid #808080;
+	padding:10px;
+}
+
+/* CALENDARGROUP BOUNDING BOX */
+.yui-skin-sam .yui-calcontainer.multi {
+	padding:0 5px 0 5px;
+}
+
+/* BOUNDING BOX FOR EACH CALENDAR GROUP PAGE */
+.yui-skin-sam .yui-calcontainer.multi .groupcal {
+	background-color:transparent;
+	border:none;
+	padding:10px 5px 10px 5px;
+	margin:0;
+}
+
+/* TITLE BAR */
+.yui-skin-sam .yui-calcontainer .title {
+	background:url(../images/dataPicker/sprite.png) repeat-x 0 0;
+	border-bottom:1px solid #cccccc;
+	font:100% sans-serif;
+	color:#000;
+	font-weight:bold;
+	height:auto;
+	padding:.4em;
+	margin:0 -10px 10px -10px;
+	top:0;
+	left:0;
+	text-align:left;
+}
+
+.yui-skin-sam .yui-calcontainer.multi .title {
+	margin:0 -5px 0 -5px;
+}
+
+.yui-skin-sam .yui-calcontainer.withtitle {
+	padding-top:0;
+}
+
+/* CLOSE BUTTON */
+.yui-skin-sam .yui-calcontainer .calclose {
+	background:url(../images/dataPicker/sprite.png) no-repeat 0 -300px;
+	width:25px;
+	height:15px;
+	top:.4em;
+	right:.4em;
+	cursor:pointer;
+}
+
+/* CALENDAR TABLE */
+.yui-skin-sam .yui-calendar {
+	border-spacing:0;
+	border-collapse:collapse;
+	font:100% sans-serif;
+	text-align:center;
+	margin:0;
+}
+
+/* NAVBAR BOUNDING BOX */
+.yui-skin-sam .yui-calendar .calhead {
+	background:transparent;
+	border:none;
+	vertical-align:middle;
+	padding:0;
+}
+
+/* NAVBAR TEXT CONTAINER */
+.yui-skin-sam .yui-calendar .calheader {
+	background:transparent;
+	font-weight:bold;
+	padding:0 0 .6em 0;
+	text-align:center;
+}
+
+.yui-skin-sam .yui-calendar .calheader img {
+	border:none;
+}
+
+/* NAVBAR LEFT ARROW */
+.yui-skin-sam .yui-calendar .calnavleft {
+	background:url(../images/dataPicker/sprite.png) no-repeat 0 -450px;
+	width:25px;
+	height:15px;
+	top:0;
+	bottom:0;
+	left:-10px;
+	margin-left:.4em;
+	cursor:pointer;
+}
+
+/* NAVBAR RIGHT ARROW */
+.yui-skin-sam .yui-calendar .calnavright {
+	background:url(../images/dataPicker/sprite.png) no-repeat 0 -500px;
+	width:25px;
+	height:15px;
+	bottom:0;
+	margin-right:.4em;
+	right:-10px;
+	top:0;
+	/*top: 10px;
+	right:-1px;*/
+	cursor:pointer;
+}
+.datapicker-dd{
+	/*margin-left: 3px;
+	margin-bottom: 10px;*/
+	width: 90px;
+}
+/*.yui-skin-sam .yui-calendar .calheader .calnavleft{
+	background:url(../images/dataPicker/sprite.png) no-repeat 0 -500px;
+	width:25px;
+	height:15px;
+	top:0;
+	bottom:0;
+	right:-10px;
+	cursor:pointer;
+	padding-left: 27px;
+	margin-left: 3px;
+	padding-bottom: 5px
+}
+
+.yui-skin-sam .yui-calendar .calheader .calnavright {
+	background:url(../images/dataPicker/sprite.png) no-repeat 0 -450px;
+	width:25px;
+	height:15px;
+	top:0;
+	bottom:0;
+	left:-10px;
+	cursor:pointer;
+	padding-right: 27px;
+	margin-right: 3px;
+	padding-bottom: 5px
+}*/
+
+.navbottom{
+	padding: 0 0 5 0;
+}
+
+/* WEEKDAY HEADER ROW */
+.yui-skin-sam .yui-calendar .calweekdayrow {
+	height:2em;
+}
+
+.yui-skin-sam .yui-calendar .calweekdayrow th {
+	padding:0;
+	border:none;
+}
+
+/* WEEKDAY (Su, Mo, Tu...) HEADER CELLS */
+.yui-skin-sam .yui-calendar .calweekdaycell {
+	color:#000;
+	font-weight:bold;
+	text-align:center;
+	width:2em;
+}
+
+/* CALENDAR FOOTER. NOT IMPLEMENTED BY DEFAULT */
+.yui-skin-sam .yui-calendar .calfoot {
+	background-color:#f2f2f2;
+}
+
+/* WEEK NUMBERS (ROW HEADERS/FOOTERS) */
+.yui-skin-sam .yui-calendar .calrowhead, .yui-skin-sam .yui-calendar .calrowfoot {
+	color:#a6a6a6;
+	font-size:85%;
+	font-style:normal;
+	font-weight:normal;
+	border:none;
+}
+
+.yui-skin-sam .yui-calendar .calrowhead {
+	text-align:right;
+	padding:0 2px 0 0;
+}
+
+.yui-skin-sam .yui-calendar .calrowfoot {
+	text-align:left;
+	padding:0 0 0 2px;
+}
+
+/* NORMAL CELLS */
+.yui-skin-sam .yui-calendar td.calcell {
+	border:1px solid #cccccc;
+	background:#fff;
+	padding:1px;
+	height:1.6em;
+	line-height:1.6em; /* set line height equal to cell height to center vertically */
+	text-align:center;
+	white-space:nowrap;
+}
+
+/* LINK INSIDE NORMAL CELLS */
+.yui-skin-sam .yui-calendar td.calcell a {
+	color:#0066cc;
+	display:block;
+	height:100%;
+	text-decoration:none;
+}
+
+/* TODAY'S DATE */
+.yui-skin-sam .yui-calendar td.calcell.today {
+	background-color:#000;
+}
+
+.yui-skin-sam .yui-calendar td.calcell.today a {
+	background-color:#fff;
+}
+
+/* OOM DATES */
+.yui-skin-sam .yui-calendar td.calcell.oom {
+	background-color:#cccccc;
+	color:#a6a6a6;
+	cursor:default;
+}
+
+/* SELECTED DATE */
+.yui-skin-sam .yui-calendar td.calcell.selected {
+	background-color:#fff;
+	color:#000;
+}
+
+.yui-skin-sam .yui-calendar td.calcell.selected a {
+	background-color:#b3d4ff;
+	color:#000;
+}
+
+/* HOVER DATE */
+.yui-skin-sam .yui-calendar td.calcell.calcellhover {
+	background-color:#426fd9;
+	color:#fff;
+	cursor:pointer;
+}
+
+.yui-skin-sam .yui-calendar td.calcell.calcellhover a {
+	background-color:#426fd9;
+	color:#fff;
+}
+
+/* DEFAULT OOB DATES */
+.yui-skin-sam .yui-calendar td.calcell.previous {
+	color:#e0e0e0;
+}
+
+/* CUSTOM RENDERERS */
+.yui-skin-sam .yui-calendar td.calcell.restricted { text-decoration:line-through; }
+.yui-skin-sam .yui-calendar td.calcell.highlight1 { background-color:#ccff99; }
+.yui-skin-sam .yui-calendar td.calcell.highlight2 { background-color:#99ccff; }
+.yui-skin-sam .yui-calendar td.calcell.highlight3 { background-color:#ffcccc; }
+.yui-skin-sam .yui-calendar td.calcell.highlight4 { background-color:#ccff99; }
+
+/* CalendarNavigator */
+
+/* MONTH/YEAR LABEL */
+.yui-skin-sam .yui-calendar a.calnav { 
+	border: 1px solid #f2f2f2;
+	padding:0 4px;
+	text-decoration:none;
+	color:#000;
+	zoom:1;
+}
+
+.yui-skin-sam .yui-calendar a.calnav:hover { 
+	background: url(../images/dataPicker/sprite.png) repeat-x 0 0;
+	border-color:#A0A0A0;
+	cursor:pointer;
+}
+
+/* NAVIGATOR MASK */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-mask {
+	background-color:#000;
+	opacity:0.25;
+	filter:alpha(opacity=25); /* IE */
+}
+
+/* NAVIGATOR BOUNDING BOX */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav {
+	font-family:arial,helvetica,clean,sans-serif;
+	font-size:93%;
+	border:1px solid #808080;
+	left:50%;
+	margin-left:-7em;
+	width:14em;
+	padding:0;
+	top:2.5em;
+	background-color:#f2f2f2;
+}
+
+.yui-skin-sam .yui-calcontainer.withtitle .yui-cal-nav {
+	top:4.5em;
+}
+
+/* NAVIGATOR BOUNDING BOX */
+.yui-skin-sam .yui-calcontainer.multi .yui-cal-nav {
+	width:16em;
+	margin-left:-8em;
+}
+
+/* NAVIGATOR YEAR/MONTH/BUTTON/ERROR BOUNDING BLOCKS */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-y,
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-m,
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-b {
+	padding:5px 10px 5px 10px;
+}
+
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-b {
+	text-align:center;
+}
+
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-e {
+	margin-top:5px;
+	padding:5px;
+	background-color:#EDF5FF;
+	border-top:1px solid black;
+	display:none;
+}
+
+/* NAVIGATOR LABELS */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav label {
+	display:block;
+	font-weight:bold;
+}
+
+/* NAVIGATOR MONTH CONTROL */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-mc {
+	width:100%;
+	_width:auto; /* IE6, IE7 Quirks don't handle 100% well */
+}
+
+/* NAVIGATOR MONTH CONTROL, VALIDATION ERROR */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-y input.yui-invalid {
+	background-color:#FFEE69;
+	border: 1px solid #000;
+}
+
+/* NAVIGATOR YEAR CONTROL */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav-yc {
+	width:4em;
+}
+
+/* NAVIGATOR BUTTONS */
+
+/* BUTTON WRAPPER */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn {
+	border:1px solid #808080;
+	background: url(../images/dataPicker/sprite.png) repeat-x 0 0;
+	background-color:#ccc;
+	margin: auto .15em;
+}
+
+/* BUTTON (based on button-skin.css) */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn button {
+	padding:0 8px;
+	font-size:93%;
+	line-height: 2;  /* ~24px */
+	*line-height: 1.7; /* For IE */
+	min-height: 2em; /* For Gecko */
+	*min-height: auto; /* For IE */
+	color: #000;
+}
+
+/* DEFAULT BUTTONS */
+/* NOTE: IE6 will only pickup the yui-default specifier from the multiple class specifier */
+.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default {
+	border:1px solid #304369;
+	background-color: #426fd9;
+	background: url(../images/dataPicker/sprite.png) repeat-x 0 -1400px;
+}
+
+.yui-skin-sam .yui-calcontainer .yui-cal-nav .yui-cal-nav-btn.yui-default button {
+	color:#fff;
+}
+
+/* ui.dropslide */
+
+.ui-dropslide      { position:absolute; }
+.ui-dropslide ol   { 
+    margin-top:2px; 
+    list-style-type:none;
+    list-style:none; 
+}
+.ui-dropslide li   { 
+    float:left; 
+    margin:0;
+    padding:0;
+    list-style-type:none;
+    list-style:none;
+}
+.ui-dropslide span {
+    font-size:.7em;
+    padding:4px 6px 4px 6px;
+    margin-left:2px;
+    text-align:center;
+    cursor:pointer;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    display:block;
+    text-align:center;
+}
+
+.ui-timepickr {
+    position:absolute;
+    width:430px;
+    z-index:12;
+}
+
+*+html .ui-timepickr {
+    padding-top:16px;
+}
+
+
+.ui-timepickr-row {
+    margin:0;
+    padding:0;
+    margin-top:2px; 
+    display:none;
+    position:relative;
+}
+
+
+
+.ui-timepickr-row.prefix{
+	height:24px;
+}
+
+
+.ui-timepickr-row.hours{
+	height:24px;
+}
+
+
+.ui-timepickr-row.minutes{
+ height: 120px;
+ width: 300px;
+}
+
+
+.ui-timepickr-row.seconds{
+	 height: 120px;
+     width: 300px;
+}
+
+
+
+.ui-timepickr-button {
+    float:left;
+    margin: 0px;
+    padding: 0px;
+    list-style:none;
+    list-style-type:none;
+    height:22px;
+}
+
+/*
+
+*+html .ui-timepickr-button {
+    height:38px;
+    border:2px solid red;
+}
+
+*/
+
+.ui-timepickr-button span {
+    font-size:10px;
+    line-height:1em;
+    padding:4px 6px 4px 6px;
+    margin-left:2px;
+    text-align:center;
+    cursor:pointer;
+    display:block;
+    text-align:center;
+    /* height:12px; */
+
+    /* system theme (default) */
+    border-width:1px;
+    border-style:solid;
+    /*border-color:ThreeDLightShadow ThreeDShadow ThreeDShadow ThreeDLightShadow;
+    color:ButtonText;
+    background:ButtonFace;*/
+}
+
+
+.ui-timepickr-button span.ui-state-hover {
+    /*color:HighlightText;
+    background:Highlight;*/
+}
+
+.ui-state-hover span {
+    /*background:#c30;*/
+}
+
+/*
+* jQuery UI CSS Framework
+* Copyright (c) 2008 AUTHORS.txt (http://ui.jquery.com/about)
+* Dual licensed under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.
+* To view and modify this theme, visit http://themeroller.com/?ctl=themeroller
+*/
+
+
+/* Component containers
+----------------------------------*/
+.ui-widget { font-family: Verdana,Arial,sans-serif; font-size: 1.1em; }
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Verdana,Arial,sans-serif; font-size: 1em; }
+.ui-widget-header { border: 1px solid #aaaaaa; background: #cccccc url(../images/ui/cccccc_40x100_textures_03_highlight_soft_75.png) 50% 50% repeat-x; color: #222222; font-weight: bold; }
+.ui-widget-header a { color: #222222; }
+.ui-widget-content { border: 1px solid #aaaaaa; background: #ffffff url(../images/ui/ffffff_40x100_textures_02_glass_75.png) 50% 50% repeat-x; color: #222222; }
+.ui-widget-content a { color: #222222; }
+
+/* Interaction states
+----------------------------------*/
+.ui-state-default, .ui-widget-content .ui-state-default { border: 1px solid #d3d3d3; background: #e6e6e6 url(../images/ui/e6e6e6_40x100_textures_02_glass_75.png) 50% 50% repeat-x; font-weight: normal; color: #555555; outline: none; }
+.ui-state-default a { color: #555555; text-decoration: none; outline: none; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus { border: 1px solid #999999; background: #dadada url(../images/ui/dadada_40x100_textures_02_glass_75.png) 50% 50% repeat-x; font-weight: normal; color: #212121; outline: none; }
+.ui-state-hover a { color: #212121; text-decoration: none; outline: none; }
+.ui-state-active, .ui-widget-content .ui-state-active { border: 1px solid #aaaaaa; background: #ffffff url(../images/ui/ffffff_40x100_textures_02_glass_65.png) 50% 50% repeat-x; font-weight: normal; color: #212121; outline: none; }
+.ui-state-active a { color: #212121; outline: none; text-decoration: none; }
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-highlight, .ui-widget-content .ui-state-highlight {border: 1px solid #fcefa1; background: #fbf9ee url(../images/ui/fbf9ee_40x100_textures_02_glass_55.png) 50% 50% repeat-x; color: #363636; }
+.ui-state-error, .ui-widget-content .ui-state-error {border: 1px solid #cd0a0a; background: #fef1ec url(../images/ui/fef1ec_40x100_textures_05_inset_soft_95.png) 50% bottom repeat-x; color: #cd0a0a; }
+.ui-state-error-text, .ui-widget-content .ui-state-error-text { color: #cd0a0a; }
+.ui-state-disabled, .ui-widget-content .ui-state-disabled { opacity: .35; filter:Alpha(Opacity=35); background-image: none; }
+.ui-priority-primary, .ui-widget-content .ui-priority-primary { font-weight: bold; }
+.ui-priority-secondary, .ui-widget-content .ui-priority-secondary { opacity: .7; filter:Alpha(Opacity=70); font-weight: normal; }
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.ui-icon { width: 16px; height: 16px; background-image: url(../images/ui/222222_256x240_icons_icons.png); }
+.ui-widget-content .ui-icon {background-image: url(../images/ui/222222_256x240_icons_icons.png); }
+.ui-widget-header .ui-icon {background-image: url(../images/ui/222222_256x240_icons_icons.png); }
+.ui-state-default .ui-icon { background-image: url(../images/ui/888888_256x240_icons_icons.png); }
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(../images/ui/454545_256x240_icons_icons.png); }
+.ui-state-active .ui-icon {background-image: url(../images/ui/454545_256x240_icons_icons.png); }
+.ui-state-highlight .ui-icon {background-image: url(../images/ui/2e83ff_256x240_icons_icons.png); }
+.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url(../images/ui/cd0a0a_256x240_icons_icons.png); }
+
+/* positioning */
+.ui-icon-carat-1-n { background-position: 0 0; }
+.ui-icon-carat-1-ne { background-position: -16px 0; }
+.ui-icon-carat-1-e { background-position: -32px 0; }
+.ui-icon-carat-1-se { background-position: -48px 0; }
+.ui-icon-carat-1-s { background-position: -64px 0; }
+.ui-icon-carat-1-sw { background-position: -80px 0; }
+.ui-icon-carat-1-w { background-position: -96px 0; }
+.ui-icon-carat-1-nw { background-position: -112px 0; }
+.ui-icon-carat-2-n-s { background-position: -128px 0; }
+.ui-icon-carat-2-e-w { background-position: -144px 0; }
+.ui-icon-triangle-1-n { background-position: 0 -16px; }
+.ui-icon-triangle-1-ne { background-position: -16px -16px; }
+.ui-icon-triangle-1-e { background-position: -32px -16px; }
+.ui-icon-triangle-1-se { background-position: -48px -16px; }
+.ui-icon-triangle-1-s { background-position: -64px -16px; }
+.ui-icon-triangle-1-sw { background-position: -80px -16px; }
+.ui-icon-triangle-1-w { background-position: -96px -16px; }
+.ui-icon-triangle-1-nw { background-position: -112px -16px; }
+.ui-icon-triangle-2-n-s { background-position: -128px -16px; }
+.ui-icon-triangle-2-e-w { background-position: -144px -16px; }
+.ui-icon-arrow-1-n { background-position: 0 -32px; }
+.ui-icon-arrow-1-ne { background-position: -16px -32px; }
+.ui-icon-arrow-1-e { background-position: -32px -32px; }
+.ui-icon-arrow-1-se { background-position: -48px -32px; }
+.ui-icon-arrow-1-s { background-position: -64px -32px; }
+.ui-icon-arrow-1-sw { background-position: -80px -32px; }
+.ui-icon-arrow-1-w { background-position: -96px -32px; }
+.ui-icon-arrow-1-nw { background-position: -112px -32px; }
+.ui-icon-arrow-2-n-s { background-position: -128px -32px; }
+.ui-icon-arrow-2-ne-sw { background-position: -144px -32px; }
+.ui-icon-arrow-2-e-w { background-position: -160px -32px; }
+.ui-icon-arrow-2-se-nw { background-position: -176px -32px; }
+.ui-icon-arrowstop-1-n { background-position: -192px -32px; }
+.ui-icon-arrowstop-1-e { background-position: -208px -32px; }
+.ui-icon-arrowstop-1-s { background-position: -224px -32px; }
+.ui-icon-arrowstop-1-w { background-position: -240px -32px; }
+.ui-icon-arrowthick-1-n { background-position: 0 -48px; }
+.ui-icon-arrowthick-1-ne { background-position: -16px -48px; }
+.ui-icon-arrowthick-1-e { background-position: -32px -48px; }
+.ui-icon-arrowthick-1-se { background-position: -48px -48px; }
+.ui-icon-arrowthick-1-s { background-position: -64px -48px; }
+.ui-icon-arrowthick-1-sw { background-position: -80px -48px; }
+.ui-icon-arrowthick-1-w { background-position: -96px -48px; }
+.ui-icon-arrowthick-1-nw { background-position: -112px -48px; }
+.ui-icon-arrowthick-2-n-s { background-position: -128px -48px; }
+.ui-icon-arrowthick-2-ne-sw { background-position: -144px -48px; }
+.ui-icon-arrowthick-2-e-w { background-position: -160px -48px; }
+.ui-icon-arrowthick-2-se-nw { background-position: -176px -48px; }
+.ui-icon-arrowthickstop-1-n { background-position: -192px -48px; }
+.ui-icon-arrowthickstop-1-e { background-position: -208px -48px; }
+.ui-icon-arrowthickstop-1-s { background-position: -224px -48px; }
+.ui-icon-arrowthickstop-1-w { background-position: -240px -48px; }
+.ui-icon-arrowreturnthick-1-w { background-position: 0 -64px; }
+.ui-icon-arrowreturnthick-1-n { background-position: -16px -64px; }
+.ui-icon-arrowreturnthick-1-e { background-position: -32px -64px; }
+.ui-icon-arrowreturnthick-1-s { background-position: -48px -64px; }
+.ui-icon-arrowreturn-1-w { background-position: -64px -64px; }
+.ui-icon-arrowreturn-1-n { background-position: -80px -64px; }
+.ui-icon-arrowreturn-1-e { background-position: -96px -64px; }
+.ui-icon-arrowreturn-1-s { background-position: -112px -64px; }
+.ui-icon-arrowrefresh-1-w { background-position: -128px -64px; }
+.ui-icon-arrowrefresh-1-n { background-position: -144px -64px; }
+.ui-icon-arrowrefresh-1-e { background-position: -160px -64px; }
+.ui-icon-arrowrefresh-1-s { background-position: -176px -64px; }
+.ui-icon-arrow-4 { background-position: 0 -80px; }
+.ui-icon-arrow-4-diag { background-position: -16px -80px; }
+.ui-icon-extlink { background-position: -32px -80px; }
+.ui-icon-newwin { background-position: -48px -80px; }
+.ui-icon-refresh { background-position: -64px -80px; }
+.ui-icon-shuffle { background-position: -80px -80px; }
+.ui-icon-transfer-e-w { background-position: -96px -80px; }
+.ui-icon-transferthick-e-w { background-position: -112px -80px; }
+.ui-icon-folder-collapsed { background-position: 0 -96px; }
+.ui-icon-folder-open { background-position: -16px -96px; }
+.ui-icon-document { background-position: -32px -96px; }
+.ui-icon-document-b { background-position: -48px -96px; }
+.ui-icon-note { background-position: -64px -96px; }
+.ui-icon-mail-closed { background-position: -80px -96px; }
+.ui-icon-mail-open { background-position: -96px -96px; }
+.ui-icon-suitcase { background-position: -112px -96px; }
+.ui-icon-comment { background-position: -128px -96px; }
+.ui-icon-person { background-position: -144px -96px; }
+.ui-icon-print { background-position: -160px -96px; }
+.ui-icon-trash { background-position: -176px -96px; }
+.ui-icon-locked { background-position: -192px -96px; }
+.ui-icon-unlocked { background-position: -208px -96px; }
+.ui-icon-bookmark { background-position: -224px -96px; }
+.ui-icon-tag { background-position: -240px -96px; }
+.ui-icon-home { background-position: 0 -112px; }
+.ui-icon-flag { background-position: -16px -112px; }
+.ui-icon-calendar { background-position: -32px -112px; }
+.ui-icon-cart { background-position: -48px -112px; }
+.ui-icon-pencil { background-position: -64px -112px; }
+.ui-icon-clock { background-position: -80px -112px; }
+.ui-icon-disk { background-position: -96px -112px; }
+.ui-icon-calculator { background-position: -112px -112px; }
+.ui-icon-zoomin { background-position: -128px -112px; }
+.ui-icon-zoomout { background-position: -144px -112px; }
+.ui-icon-search { background-position: -160px -112px; }
+.ui-icon-wrench { background-position: -176px -112px; }
+.ui-icon-gear { background-position: -192px -112px; }
+.ui-icon-heart { background-position: -208px -112px; }
+.ui-icon-star { background-position: -224px -112px; }
+.ui-icon-link { background-position: -240px -112px; }
+.ui-icon-cancel { background-position: 0 -128px; }
+.ui-icon-plus { background-position: -16px -128px; }
+.ui-icon-plusthick { background-position: -32px -128px; }
+.ui-icon-minus { background-position: -48px -128px; }
+.ui-icon-minusthick { background-position: -64px -128px; }
+.ui-icon-close { background-position: -80px -128px; }
+.ui-icon-closethick { background-position: -96px -128px; }
+.ui-icon-key { background-position: -112px -128px; }
+.ui-icon-lightbulb { background-position: -128px -128px; }
+.ui-icon-scissors { background-position: -144px -128px; }
+.ui-icon-clipboard { background-position: -160px -128px; }
+.ui-icon-copy { background-position: -176px -128px; }
+.ui-icon-contact { background-position: -192px -128px; }
+.ui-icon-image { background-position: -208px -128px; }
+.ui-icon-video { background-position: -224px -128px; }
+.ui-icon-alert { background-position: 0 -144px; }
+.ui-icon-info { background-position: -16px -144px; }
+.ui-icon-notice { background-position: -32px -144px; }
+.ui-icon-help { background-position: -48px -144px; }
+.ui-icon-check { background-position: -64px -144px; }
+.ui-icon-bullet { background-position: -80px -144px; }
+.ui-icon-radio-off { background-position: -96px -144px; }
+.ui-icon-radio-on { background-position: -112px -144px; }
+.ui-icon-play { background-position: 0 -160px; }
+.ui-icon-pause { background-position: -16px -160px; }
+.ui-icon-seek-next { background-position: -32px -160px; }
+.ui-icon-seek-prev { background-position: -48px -160px; }
+.ui-icon-seek-end { background-position: -64px -160px; }
+.ui-icon-seek-first { background-position: -80px -160px; }
+.ui-icon-stop { background-position: -96px -160px; }
+.ui-icon-eject { background-position: -112px -160px; }
+.ui-icon-volume-off { background-position: -128px -160px; }
+.ui-icon-volume-on { background-position: -144px -160px; }
+.ui-icon-power { background-position: 0 -176px; }
+.ui-icon-signal-diag { background-position: -16px -176px; }
+.ui-icon-signal { background-position: -32px -176px; }
+.ui-icon-battery-0 { background-position: -48px -176px; }
+.ui-icon-battery-1 { background-position: -64px -176px; }
+.ui-icon-battery-2 { background-position: -80px -176px; }
+.ui-icon-battery-3 { background-position: -96px -176px; }
+.ui-icon-circle-plus { background-position: 0 -192px; }
+.ui-icon-circle-minus { background-position: -16px -192px; }
+.ui-icon-circle-close { background-position: -32px -192px; }
+.ui-icon-circle-triangle-e { background-position: -48px -192px; }
+.ui-icon-circle-triangle-s { background-position: -64px -192px; }
+.ui-icon-circle-triangle-w { background-position: -80px -192px; }
+.ui-icon-circle-triangle-n { background-position: -96px -192px; }
+.ui-icon-circle-arrow-e { background-position: -112px -192px; }
+.ui-icon-circle-arrow-s { background-position: -128px -192px; }
+.ui-icon-circle-arrow-w { background-position: -144px -192px; }
+.ui-icon-circle-arrow-n { background-position: -160px -192px; }
+.ui-icon-circle-zoomin { background-position: -176px -192px; }
+.ui-icon-circle-zoomout { background-position: -192px -192px; }
+.ui-icon-circle-check { background-position: -208px -192px; }
+.ui-icon-circlesmall-plus { background-position: 0 -208px; }
+.ui-icon-circlesmall-minus { background-position: -16px -208px; }
+.ui-icon-circlesmall-close { background-position: -32px -208px; }
+.ui-icon-squaresmall-plus { background-position: -48px -208px; }
+.ui-icon-squaresmall-minus { background-position: -64px -208px; }
+.ui-icon-squaresmall-close { background-position: -80px -208px; }
+.ui-icon-grip-dotted-vertical { background-position: 0 -224px; }
+.ui-icon-grip-dotted-horizontal { background-position: -16px -224px; }
+.ui-icon-grip-solid-vertical { background-position: -32px -224px; }
+.ui-icon-grip-solid-horizontal { background-position: -48px -224px; }
+.ui-icon-gripsmall-diagonal-se { background-position: -64px -224px; }
+.ui-icon-grip-diagonal-se { background-position: -80px -224px; }
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Corner radius */
+.ui-corner-tl { -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px; border-top-left-radius: 4px; }
+.ui-corner-tr { -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px; border-top-right-radius: 4px; }
+.ui-corner-bl { -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px; border-bottom-left-radius: 4px; }
+.ui-corner-br { -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px; border-bottom-right-radius: 4px; }
+.ui-corner-top { -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px; border-top-left-radius: 4px;-moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px; border-top-right-radius: 4px;}
+.ui-corner-bottom { -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px; border-bottom-left-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px; border-bottom-right-radius: 4px;}
+.ui-corner-right {  -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px; border-top-right-radius: 4px; -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px; border-bottom-right-radius: 4px; }
+.ui-corner-left { -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px; border-top-left-radius: 4px; -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px; border-bottom-left-radius: 4px; }
+.ui-corner-all { -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;}
+
+/* Overlays */
+.ui-widget-overlay { background: #aaaaaa url(../images/ui/aaaaaa_40x100_textures_01_flat_0.png) 50% 50% repeat-x; opacity: .30;filter:Alpha(Opacity=30); }
+.ui-widget-shadow { margin: -8px 0 0 -8px; padding: 8px; background: #aaaaaa url(../images/ui/aaaaaa_40x100_textures_01_flat_0.png) 50% 50% repeat-x; opacity: .30;filter:Alpha(Opacity=30); -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px;  }
+
+.textstyle {
+	font-size:100%;
+	font-family: Arial,Helvetica,sans-serif;
+	border-color: #A7A7A7 #CCCCCC #CCCCCC #CCCCCC;
+	border-style:solid;
+	border-width:1px;
+	color:#555555;
+	font-size:1em;
+}
+.alignToRight {
+	text-align:right;
+	vertical-align:top;
+}
+/* Some round fancies */
+.topl, .topr, .bottoml, .bottomr {
+	background: url(../images/corners.gif);
+	width: 10px;
+	height: 10px;
+	font-size: 0;
+}
+
+.topl, .bottoml {
+	float: left;
+}
+.topr, .bottomr {
+	float: right;
+}
+
+.shiny_box {
+	width: 210px;
+	overflow: hidden;	
+}
+.shiny_box p {
+	margin:10px;
+}
+
+.shiny_box_body {
+	clear: both;
+	padding: 0 10px;
+	overflow: hidden;
+	color: #666666;
+	padding:4px;
+}
+
+* html .shiny_box_body {
+	height: 1%;	
+}
+
+.simple_box {
+	width:200px;
+	padding:10px;
+	background-color:#0066FF;
+	border:1px solid #F2F2F2;
+	color:#F2F2F2;
+	font-weight:bold;
+	font-size:11px;
+	text-align: center;
+}
+
+/* CSS Document */
+
+#ibox_w{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index:100;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	margin:0;
+	padding:0;
+	filter:alpha(opacity=0);
+	-moz-opacity: 0.0;
+	opacity: 0.0;
+}
+
+#ibox_progress {	
+	margin:0;padding:0;
+	position: absolute;
+	z-index:105;
+}
+
+#ibox_wrapper {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index:1000;
+	padding:10px;
+	border:1px solid #CCC;
+	width:300px;
+	height:300px;
+	background-color:#999999;
+	padding-bottom:30px;
+	margin:0;
+}
+
+#ibox_content {
+	background-color:#FFFFFF;
+	width:100%;
+	height:100%;
+	margin-bottom:5px;
+	position:relative;
+	top:0px;
+	left:0px;
+	border:1px solid #000;
+	padding:2px;
+}
+
+#ibox_footer_wrapper {
+	position:relative;padding:0;margin:0;top:0px;left:0px;
+}
+
+/*
+Copyright (c) 2009, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.7.0
+*/
+
+.yui-skin-sam .yui-dt table
+{
+	border-collapse:collapse;
+	border-spacing:0;
+	font-size:inherit;
+	font-family: Tahoma, Verdana, Arial, SunSans-Regular, Sans-Serif; 
+	font:100%;
+}
+
+.yui-skin-sam .yui-dt th
+{
+	font-weight:bold;
+	font-size: 10px; 
+	vertical-align: middle;
+}
+
+.yui-skin-sam .yui-dt-mask
+{
+	position:absolute;
+	z-index:9500;
+}
+
+th.yui-dt-resizeable .yui-dt-resizerliner
+{
+	position:relative;
+	/*height:100%;*/
+}
+
+.yui-dt-resizer
+{
+	position:absolute;
+	height:100%;
+	cursor:e-resize;
+	cursor:col-resize;
+	/*opacity:0;
+	filter:alpha(opacity=0);*/
+}
+
+.yui-dt-resizerproxy
+{
+	visibility:hidden;
+	position:absolute;
+	z-index:9000;
+	background-color:#CCC;
+	opacity:0;
+	filter:alpha(opacity=0);
+}
+
+.yui-skin-sam .yui-dt thead
+{
+	border-spacing:0;
+}
+
+.yui-skin-sam .yui-dt caption
+{
+	color:#000;
+	font-size:85%;
+	font-weight:normal;
+	font-style:italic;
+	line-height:1;
+	padding:1em 0;
+}
+
+
+
+.yui-skin-sam .yui-dt th,.yui-skin-sam .yui-dt th a
+{
+	font-size:11px;
+	vertical-align:bottom;
+	font-weight:bold;
+	font-family:Tahoma,Verdana,Arial,SunSans-Regular,Sans-Serif;
+}
+
+.yui-skin-sam .yui-dt-liner
+{
+	padding:5px 3px;
+}
+
+.yui-skin-sam .yui-dt td
+{
+	vertical-align:middle;
+}
+
+.yui-skin-sam .yui-dt-list td
+{
+	border-right:none;
+}
+
+.yui-skin-sam .yui-dt-resizer
+{
+	width:6px;
+}
+
+.yui-skin-sam .yui-dt-mask
+{
+	background-color:#000;
+	opacity:.25;
+	filter:alpha(opacity=25);
+}
+
+.yui-skin-sam .yui-dt-message
+{
+	background-color:#FFF;
+}
+
+
+/*/////////////////////////////////////////////////END UNDEFINED STYLES BLOCK////////////////////////////////////////////////////////*/
+
+/*
+	!!!!!!!!!!!!
+	All added new styles must be situated before UNDEFINED STYLES BLOCK!!!
+  	It need put in DEFAULT STYLES BLOCK
+	Don't write it here!!
+	!!!!!!!!!!!!
+*/
