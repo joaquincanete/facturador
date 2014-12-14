@@ -11,57 +11,98 @@ block content
 				.col-md-12
 					h1.text-center Nombre de la Empresa
 
-			form.form-horizontal(role="form")
-				.row
-					.col-md-6
-						.form-group
-							label.col-sm-3.control-label(for="cod-cliente") Cod. Cliente
-							.col-sm-2
-								input.form-control#cod-cliente(placeholder="Cod. Cliente")
-							.col-sm-7
-								p.form-control-static Cliente Nombre
-			
-						.form-group
-							.col-sm-5
-							.col-sm-7
-								p.form-control-static Cliente Domicilio
+			.row
+				.col-md-6
+					.panel.panel-primary.recibo-head
+						.panel-heading Cliente
+						.panel-body
+							.row
+								.col-md-3
+									input.form-control#cod-cliente(placeholder="Cod. Cliente")
+								.col-md-9
+									a.btn.btn-success#search-clientes(href="#"): span.fa.fa-search
+							.row
+								.col-sm-12
+									h3#datos-cliente
+										| Cliente
+										br
+										small Dirección
 
-					.col-md-6
-						.form-group
-							label.col-sm-3.control-label(for="total") Total
-							.col-sm-9
-								p#total.form-control-static $ 655.33
-						.form-group
-							label.col-sm-3.control-label(for="cant-art") Cant. Artículos
-							.col-sm-9
-								p#cant-art.form-control-static 7
+				.col-md-6
+					.panel.panel-primary.recibo-head
+						.panel-heading Recibo
+						.panel-body
+							dl.dl-horizontal
+								dt Total
+								dd $ 655.33
+							
+							dl.dl-horizontal
+								dt Cantidad de Artículos
+								dd 7
+
+							dl.dl-horizontal
+								dt 
+								dd
+									a.btn.btn-success(href="#")	Imprimir (F7)
+									a.btn.btn-danger(href="#")	Anular (F6)
 
 		
 			.row
 				.col-md-12
+					.panel.panel-primary
+						.panel-heading Artículos
+						.panel-body
+							table.table.table-hover
+								thead
+									tr
+										th.wSmall Cod.
+										th.wSmall.text-center Cantidad
+										th.wAuto Denominación
+										th.wSmall.text-right Precio
+										th.wSmall.text-right Importe
+										th.wSmall
+
+								tbody
+									tr
+										td 669
+										td.text-center 6
+										td Denominación
+										td.text-right $ 10.99
+										td.text-right $ 109.90
+										td.text-right: a.btn.btn-danger(href="#"): i.fa.fa-trash
+
+									tr
+										td: input.form-control(placeholder="Cod. Art.")
+										td: input.form-control(placeholder="Cantidad")
+										td Denominación
+										td.text-right $ 10.99
+										td.text-right $ 109.90
+										td.text-right: a.btn.btn-warning(href="#"): i.fa.fa-times
+
+
+
+
+
+	// Modal
+	.modal.fade#modal-clientes(tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close(type="button" data-dismiss="modal")
+						span(aria-hidden="true") &times;
+						span.sr-only Close
+
+					h4.modal-title Lista de Clientes
+
+				.modal-body
 					table.table.table-hover
 						thead
 							tr
 								th Cod.
-								th Cantidad
-								th Denominación
-								th Precio
-								th Importe
-								th Acc
+								th Nombre
+								th Apellido
 
 						tbody
-							tr
-								td: p.form-control-static 669
-								td: p.form-control-static 6
-								td: p.form-control-static Denominación
-								td: p.form-control-static $ 10.99
-								td: p.form-control-static $ 109.90
-								td: a.btn.btn-danger(href="#"): i.fa.fa-trash
-							
-							tr
-								td: input.form-control(placeholder="Cod. Art.")
-								td: input.form-control(placeholder="Cantidad")
-								td: p.form-control-static Denominación
-								td: p.form-control-static $ 10.99
-								td: p.form-control-static $ 109.90
-								td: a.btn.btn-warning(href="#"): i.fa.fa-times
+				
+				.modal-footer
+					button.btn.btn-default(type="button" data-dismiss="modal") Close
