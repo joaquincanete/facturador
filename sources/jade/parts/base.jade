@@ -31,6 +31,24 @@ html(lang="en")
 
 
 	body
+		//begin Navbar
+		nav.navbar.navbar-inverse(role="navigation")
+			.container
+				.navbar-header
+					button.navbar-toggle.collapsed(type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar")
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					
+					a.navbar-brand(href="#") Facturador
+		
+				div#navbar.navbar-collapse.collapse
+					ul.nav.navbar-nav
+						li.active: a(href="#") Inicio
+						li: a(href="#") Acerca de...
+		//end Navbar
+		
 		//begin Content
 		section
 			block content
@@ -39,7 +57,8 @@ html(lang="en")
 		
 		//begin Footer
 		footer
-			p Developed by: 
+			.container
+				p Developed by: 
 		//end Footer
 
 		
