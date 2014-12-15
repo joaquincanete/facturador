@@ -47,7 +47,7 @@
 	)
 
 	$("#articulo-cantidad").on( "keyup", (e) ->
-		setCantidad($(@), e)
+		setCantidad($(@))
 	)
 	
 	$("#articulo-cantidad").on( "keydown", (e) ->
@@ -62,8 +62,28 @@
 		e.preventDefault()
 		cambiarLista(e)
 	)
-	
 
+	$("body").on( "keydown", (e) ->
+		if e.keyCode is 118
+			imprimir()
+			return false
+		
+		else if e.keyCode is 117
+			anular()
+			return false
+
+	)
+
+	$("#imprimir").on( "click", (e) ->
+		e.preventDefault()
+		imprimir()
+	)
+
+
+	$("#anular").on( "click", (e) ->
+		e.preventDefault()
+		anular()
+	)
 
 	#funciones
 	getCliente = (elm) ->
@@ -181,12 +201,13 @@
 	
 
 
-	setCantidad = (cantidad, evt) ->
+	setCantidad = (elm) ->
 		if $("#articulo-codigo").val() isnt ""
-			cantidad = cantidad.val()
+			cantidad = elm.val()
 			if cantidad is ""
 				cantidad = "1"
 
+			elm.parent().data("value", cantidad)
 			cant = parseFloat(cantidad)
 			
 			if $("#lista1").parent().hasClass("active")
@@ -230,7 +251,7 @@
 				
 				$(".articulos tbody").append("
 					<tr>
-						<td>#{codigo}</td>
+						<td class='codigo'>#{codigo}</td>
 						<td 
 							class='text-center cantidad'
 							data-value='#{cantidad}'
@@ -251,7 +272,7 @@
 						>
 							#{importeFormat}
 						</td>
-						<td class='text-right'>
+						<td class='text-right acc'>
 							<a class='btn btn-danger delete-row' href='#'>
 								<i class='fa fa-trash'></i>
 							</a>
@@ -270,9 +291,13 @@
 	clearForm = () ->
 		$("#articulo-codigo").val("")
 		$("#articulo-cantidad").val("")
+		$("#articulo-cantidad").data("value", "")
 		$("#articulo-denominacion").html("")
-		$("#articulo-precio").html("$ 0.00")
-		$("#articulo-importe").html("$ 0.00")
+		$("#articulo-precio").html("$ 0,00")
+		$("#articulo-precio").data("precio1", "0")
+		$("#articulo-precio").data("precio2", "0")
+		$("#articulo-precio").data("precio3", "0")
+		$("#articulo-importe").html("$ 0,00")
 		$("#articulo-codigo").focus()
 
 
@@ -299,7 +324,7 @@
 	cambiarLista = (evt) ->
 		lista = $(evt.target).find('input').attr('id').replace("lista", "precio")
 		
-		$(".articulos tbody tr").each((i) ->
+		$(".articulos tr").each((i) ->
 			cantidad = $(@).find(".cantidad").data("value")
 			precio = $(@).find(".precio").data(lista)
 			precioFormat = numeral(precio).format("$ 0,0.00")
@@ -312,16 +337,73 @@
 		)
 
 		actualizaTotales()
-	##
-	##
-	##
-	## Listas de precios
-	## Imprimir
-	##     Enviar datos al backend para descontar stock
-	##     css print
-	## Anular
-	##
-	##
-	##
+
+
+
+	imprimir = () ->
+		if confirm("
+				¿Confirma que desea imprimir el recibo y procesar el stock?\n\n
+				Total: #{$("#total").html()}\n
+				Cantidad de Artículos: #{$("#contar").html()}
+
+			")
+
+			procesarStocks()
+	
+
+
+	anular = () ->
+		clearForm()
+
+		$("#cod-cliente").val("")
+		$("#datos-cliente").html("Cliente<br><small>Dirección</small>")
+
+		$(".articulos tbody").html("")
+
+		actualizaTotales()
+
+		$(".cambiar-listas label").removeClass("active")
+		$($(".cambiar-listas label")[0]).addClass("active")
+
+		$("#cod-cliente").focus()
+
+
+	procesarStocks = () ->
+		data = {
+			'accion': "actualizar-stock",
+			'data': { }
+		}
+
+		articulos = []
+
+		$(".articulos tbody tr").each((i) ->
+			articulos.push({
+				"codigo": $(@).find("td.codigo").html(),
+				"cantidad": $(@).find("td.cantidad").data("value")
+			})
+		)
+
+		data.data['articulos'] = articulos
+
+		$.ajax
+			beforeSend: (xhr, settings) ->
+				return null
+
+			complete: (xhr, status)->
+				return null
+
+			data: '&json='+ JSON.stringify(data)
+			success: (data, status, xhr) ->
+				obj = $.parseJSON(data);
+
+				if obj.estado is "exito"
+					window.print()
+					anular()
+				else
+					alert("Error al procesar stocks")
+
+			type: 'POST'
+			url: "ajax.php"
+		return null
 
 )(jQuery)

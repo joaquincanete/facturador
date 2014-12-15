@@ -12,13 +12,13 @@ block content
 					h1.text-center Nombre de la Empresa
 
 			.row
-				.col-md-6
+				.col-xs-6
 					.panel.panel-primary.recibo-head
 						.panel-heading Cliente
 						.panel-body
-							.row
+							.row.search-cliente
 								.col-md-3
-									input.form-control#cod-cliente(placeholder="Cod. Cliente")
+									input.form-control#cod-cliente(placeholder="Cod. Cliente" autofocus tabindex="1")
 								.col-md-9
 									a.btn.btn-success#search-clientes(href="#"): span.fa.fa-search
 							.row
@@ -28,7 +28,7 @@ block content
 										br
 										small Dirección
 
-				.col-md-6
+				.col-xs-6
 					.panel.panel-primary.recibo-head
 						.panel-heading Recibo
 						.panel-body
@@ -40,7 +40,7 @@ block content
 								dt Cantidad de Artículos
 								dd#contar 0
 							
-							dl.dl-horizontal
+							dl.dl-horizontal.listas
 								dt Precios 
 								dd
 									.btn-group.cambiar-listas(data-toggle="buttons")
@@ -56,11 +56,11 @@ block content
 											input#lista3(type="radio" name="options" autocomplete="off")
 											| Lista 3
 
-							dl.dl-horizontal
+							dl.dl-horizontal.acciones
 								dt 
 								dd
-									a.btn.btn-success(href="#")	Imprimir (F7)
-									a.btn.btn-danger(href="#")	Anular (F6)
+									a.btn.btn-success#imprimir(href="#")	Imprimir (F7)
+									a.btn.btn-danger#anular(href="#")	Anular (F6)
 
 		
 			.row
@@ -76,17 +76,17 @@ block content
 										th.wAuto Denominación
 										th.wSmall.text-right Precio
 										th.wSmall.text-right Importe
-										th.wSmall
+										th.wSmall.acc
 
 								tbody
 
 								tfoot
 									tr
-										td: input#articulo-codigo.form-control(type="number" placeholder="Cod. Art.")
-										td: input#articulo-cantidad.form-control(type="number" placeholder="Cantidad")
+										td: input#articulo-codigo.form-control(type="number" placeholder="Cod. Art." tabindex="2")
+										td.cantidad: input#articulo-cantidad.form-control(type="number" placeholder="Cantidad" tabindex="3")
 										td#articulo-denominacion 
-										td#articulo-precio.text-right $ 0.00
-										td#articulo-importe.text-right $ 0.00
+										td#articulo-precio.text-right.precio $ 0,00
+										td#articulo-importe.text-right.importe $ 0,00
 										td.text-right: a.btn.btn-warning#clear-form(href="#"): i.fa.fa-times
 
 

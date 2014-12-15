@@ -51,6 +51,12 @@
 			)
 		);
 
+	} else if($accion == "actualizar-stock") {
+		$data = array(
+			'estado' => 'exito', #exito, error
+			'accion' => 'actualizar-stock',
+			'data' => ""
+		);
 	}
 	
 
