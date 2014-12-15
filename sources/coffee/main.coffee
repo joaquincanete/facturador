@@ -1,4 +1,19 @@
 (($)->
+
+	#load a language
+	numeral.language('es', {
+		delimiters: {
+			thousands: '.',
+			decimal: ','
+		},
+		currency: {
+			symbol: '$'
+		}
+	});
+	#switch between languages
+	numeral.language('es');
+
+
 	#Enlazando eventos
 	$("#cod-cliente").on( "blur", () ->
 		getCliente($(@))
@@ -122,10 +137,14 @@
 				success: (data, status, xhr) ->
 					obj = $.parseJSON(data);
 
+					precio = obj.data.precio
+					precioFormat = numeral(precio).format("$ 0,0.00")
+
 					if obj.estado is "exito"
 						$("#articulo-denominacion").html("#{obj.data.denominacion}")
-						$("#articulo-precio").html("$ #{obj.data.precio}")
-						$("#articulo-importe").html("$ #{obj.data.precio}")
+						$("#articulo-precio").html("#{precio}")
+						$("#articulo-precio").data("precio", "#{precio}")
+						$("#articulo-importe").html("#{precioFormat}")
 
 				type: 'POST'
 				url: "ajax.php"
@@ -137,15 +156,20 @@
 		if $("#articulo-codigo").val() isnt ""
 			cantidad = cantidad.val()
 			if cantidad is ""
-				cantidad = "0"
+				cantidad = "1"
 
-			importe = parseFloat(cantidad) * parseFloat($("#articulo-precio").html().replace("$ ", ""))
-			$("#articulo-importe").html("$ #{importe}")
-
-
-
+			cant = parseFloat(cantidad)
+			precio = parseFloat( $("#articulo-precio").data("precio") )
+			
+			importe = cant * precio
+			importeFormat = numeral(importe).format("$ 0,0.00")
+			
+			$("#articulo-importe").data("value", "#{importe}")
+			$("#articulo-importe").html("#{importeFormat}")
 
 		return null
+
+
 
 	addArticulo = (evt) ->
 		# Es Tab (9) o Enter (13)
@@ -160,14 +184,19 @@
 						<td class='text-center'>#{$("#articulo-cantidad").val()}</td>
 						<td>#{$("#articulo-denominacion").html()}</td>
 						<td class='text-right'>#{$("#articulo-precio").html()}</td>
-						<td class='text-right'>#{$("#articulo-importe").html()}</td>
+						<td class='text-right importe' data-value='#{$("#articulo-importe").data("value")}'>#{$("#articulo-importe").html()}</td>
 						<td class='text-right'><a class='btn btn-danger delete-row' href='#'><i class='fa fa-trash'></i></a></td>
 					</tr>
 				")
 
 				evt.preventDefault()
+
+				actualizaTotales()
+
 				clearForm()
 	
+
+
 	clearForm = () ->
 		$("#articulo-codigo").val("")
 		$("#articulo-cantidad").val("")
@@ -178,17 +207,24 @@
 
 
 
-
 	deleteRow = (elm) ->
 		elm.parents("tr").remove()
 		clearForm()
 
+	actualizaTotales = () ->
+		total = 0
+		$(".articulos tbody tr").each((i) ->
+			total += parseFloat( $(@).find("td.importe").data("value") )
+		)
+		totalFormat = numeral(total).format("$ 0,0.00")
+		$("#total").html(totalFormat)
+
+		$("#contar").html( $(".articulos tbody tr").length )
 
 
 	##
 	##
 	##
-	## Formato del precio de los artículos
 	## Listas de precios
 	##
 	##
