@@ -16,15 +16,18 @@
       return getCliente($(this));
     });
     '$( window ).on( "beforeunload", () ->\n	return "Todos los datos actuales se perderan si continúa." \n)';
-    $("#search-clientes").on("click", function() {
+    $("#search-clientes").on("click", function(e) {
+      e.preventDefault();
       return getClientes();
     });
-    $("body").on("click", ".list-cli-row", function() {
+    $("body").on("click", ".list-cli-row", function(e) {
+      e.preventDefault();
       $("#cod-cliente").val($(this).data("cid"));
       $("#modal-clientes").modal('hide');
       return $("#cod-cliente").blur();
     });
-    $("body").on("click", ".delete-row", function() {
+    $("body").on("click", ".delete-row", function(e) {
+      e.preventDefault();
       return deleteRow($(this));
     });
     $("#articulo-codigo").on("blur", function() {
@@ -36,7 +39,8 @@
     $("#articulo-cantidad").on("keydown", function(e) {
       return addArticulo(e);
     });
-    $("#clear-form").on("click", function() {
+    $("#clear-form").on("click", function(e) {
+      e.preventDefault();
       return clearForm();
     });
     getCliente = function(elm) {
@@ -170,6 +174,7 @@
     };
     deleteRow = function(elm) {
       elm.parents("tr").remove();
+      actualizaTotales();
       return clearForm();
     };
     return actualizaTotales = function() {

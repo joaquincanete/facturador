@@ -25,17 +25,20 @@
 	)
 	'''
 
-	$("#search-clientes").on( "click", () ->
+	$("#search-clientes").on( "click", (e) ->
+		e.preventDefault()
 		getClientes()
 	)
 	
-	$("body").on( "click", ".list-cli-row", () ->
+	$("body").on( "click", ".list-cli-row", (e) ->
+		e.preventDefault()
 		$("#cod-cliente").val $(@).data("cid")
 		$("#modal-clientes").modal('hide')
 		$("#cod-cliente").blur()
 	)
 
-	$("body").on( "click", ".delete-row", () ->
+	$("body").on( "click", ".delete-row", (e) ->
+		e.preventDefault()
 		deleteRow($(@))
 	)
 
@@ -50,7 +53,8 @@
 	$("#articulo-cantidad").on( "keydown", (e) ->
 		addArticulo(e)
 	)
-	$("#clear-form").on( "click", () ->
+	$("#clear-form").on( "click", (e) ->
+		e.preventDefault()
 		clearForm()
 	)
 
@@ -209,7 +213,9 @@
 
 	deleteRow = (elm) ->
 		elm.parents("tr").remove()
+		actualizaTotales()
 		clearForm()
+
 
 	actualizaTotales = () ->
 		total = 0
@@ -226,6 +232,10 @@
 	##
 	##
 	## Listas de precios
+	## Imprimir
+	##     Enviar datos al backend para descontar stock
+	##     css print
+	## Anular
 	##
 	##
 	##
