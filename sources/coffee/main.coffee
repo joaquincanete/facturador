@@ -183,4 +183,15 @@
 		elm.parents("tr").remove()
 		clearForm()
 
+
+
+	##
+	##
+	##
+	## Formato del precio de los artículos
+	## Listas de precios
+	##
+	##
+	##
+
 )(jQuery)
