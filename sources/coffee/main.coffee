@@ -58,7 +58,11 @@
 		clearForm()
 	)
 
-
+	$(".cambiar-listas label").on( "click", (e) ->
+		e.preventDefault()
+		cambiarLista(e)
+	)
+	
 
 
 	#funciones
@@ -84,7 +88,9 @@
 					obj = $.parseJSON(data);
 
 					if obj.estado is "exito"
-						$("#datos-cliente").html("#{obj.data.nombre}<br><small>#{obj.data.direccion}</small>")
+						$("#datos-cliente").html("
+							#{obj.data.nombre}<br>
+							<small>#{obj.data.direccion}</small>")
 
 				type: 'POST'
 				url: "ajax.php"
@@ -109,7 +115,13 @@
 			success: (data, status, xhr) ->
 				obj = $.parseJSON(data);
 				$.each( obj.data, ( key, value ) ->
-					$("#modal-clientes .modal-body tbody").append("<tr class='list-cli-row' data-cid='#{key}'><td>#{key}</td><td>#{value.nombre}</td><td>#{value.direccion}</td></tr>")
+					$("#modal-clientes .modal-body tbody")
+						.append("
+							<tr class='list-cli-row' data-cid='#{key}'>
+								<td>#{key}</td>
+								<td>#{value.nombre}</td>
+								<td>#{value.direccion}</td>
+							</tr>")
 				)
 				
 				$("#modal-clientes").modal('show')
@@ -141,13 +153,26 @@
 				success: (data, status, xhr) ->
 					obj = $.parseJSON(data);
 
-					precio = obj.data.precio
-					precioFormat = numeral(precio).format("$ 0,0.00")
+					precio1 = obj.data.precio.lista1
+					precio2 = obj.data.precio.lista2
+					precio3 = obj.data.precio.lista3
 
+					if $("#lista1").parent().hasClass("active")
+						precioFormat = numeral(precio1).format("$ 0,0.00")
+					
+					else if $("#lista2").parent().hasClass("active")
+						precioFormat = numeral(precio2).format("$ 0,0.00")
+					
+					else if $("#lista3").parent().hasClass("active")
+						precioFormat = numeral(precio3).format("$ 0,0.00")
+
+					
 					if obj.estado is "exito"
 						$("#articulo-denominacion").html("#{obj.data.denominacion}")
-						$("#articulo-precio").html("#{precio}")
-						$("#articulo-precio").data("precio", "#{precio}")
+						$("#articulo-precio").html("#{precioFormat}")
+						$("#articulo-precio").data("precio1", "#{precio1}")
+						$("#articulo-precio").data("precio2", "#{precio2}")
+						$("#articulo-precio").data("precio3", "#{precio3}")
 						$("#articulo-importe").html("#{precioFormat}")
 
 				type: 'POST'
@@ -163,7 +188,15 @@
 				cantidad = "1"
 
 			cant = parseFloat(cantidad)
-			precio = parseFloat( $("#articulo-precio").data("precio") )
+			
+			if $("#lista1").parent().hasClass("active")
+				precio = parseFloat( $("#articulo-precio").data("precio1") )
+			
+			else if $("#lista2").parent().hasClass("active")
+				precio = parseFloat( $("#articulo-precio").data("precio2") )
+			
+			else if $("#lista3").parent().hasClass("active")
+				precio = parseFloat( $("#articulo-precio").data("precio3") )
 			
 			importe = cant * precio
 			importeFormat = numeral(importe).format("$ 0,0.00")
@@ -178,18 +211,51 @@
 	addArticulo = (evt) ->
 		# Es Tab (9) o Enter (13)
 		if evt.keyCode is 9 or evt.keyCode is 13
-			if $("#articulo-codigo").val() isnt ""
-				if $("#articulo-cantidad").val() is ""
+
+			codigo = $("#articulo-codigo").val()
+			cantidad = $("#articulo-cantidad").val()
+			denominacion = $("#articulo-denominacion").html()
+			precio1 = $("#articulo-precio").data("precio1")
+			precio2 = $("#articulo-precio").data("precio2")
+			precio3 = $("#articulo-precio").data("precio3")
+			precioFormat = $("#articulo-precio").html()
+			importe = $("#articulo-importe").data("value")
+			importeFormat = $("#articulo-importe").html()
+
+			if codigo isnt ""
+				if cantidad is ""
 					$("#articulo-cantidad").val("1")
+					cantidad = "1"
+
 				
 				$(".articulos tbody").append("
 					<tr>
-						<td>#{$("#articulo-codigo").val()}</td>
-						<td class='text-center'>#{$("#articulo-cantidad").val()}</td>
-						<td>#{$("#articulo-denominacion").html()}</td>
-						<td class='text-right'>#{$("#articulo-precio").html()}</td>
-						<td class='text-right importe' data-value='#{$("#articulo-importe").data("value")}'>#{$("#articulo-importe").html()}</td>
-						<td class='text-right'><a class='btn btn-danger delete-row' href='#'><i class='fa fa-trash'></i></a></td>
+						<td>#{codigo}</td>
+						<td 
+							class='text-center cantidad'
+							data-value='#{cantidad}'
+						>#{cantidad}</td>
+						<td>#{denominacion}</td>
+						<td 
+							class='text-right precio' 
+							data-precio1='#{precio1}'
+							data-precio2='#{precio2}'
+							data-precio3='#{precio3}'
+
+						>
+							#{precioFormat}
+						</td>
+						<td 
+							class='text-right importe' 
+							data-value='#{importe}'
+						>
+							#{importeFormat}
+						</td>
+						<td class='text-right'>
+							<a class='btn btn-danger delete-row' href='#'>
+								<i class='fa fa-trash'></i>
+							</a>
+						</td>
 					</tr>
 				")
 
@@ -217,6 +283,7 @@
 		clearForm()
 
 
+	
 	actualizaTotales = () ->
 		total = 0
 		$(".articulos tbody tr").each((i) ->
@@ -227,7 +294,24 @@
 
 		$("#contar").html( $(".articulos tbody tr").length )
 
+	
 
+	cambiarLista = (evt) ->
+		lista = $(evt.target).find('input').attr('id').replace("lista", "precio")
+		
+		$(".articulos tbody tr").each((i) ->
+			cantidad = $(@).find(".cantidad").data("value")
+			precio = $(@).find(".precio").data(lista)
+			precioFormat = numeral(precio).format("$ 0,0.00")
+			importe = cantidad * precio
+			importeFormat = numeral(importe).format("$ 0,0.00")
+
+			$(@).find(".precio").html("#{precioFormat}")
+			$(@).find(".importe").data("value", "#{importe}")
+			$(@).find(".importe").html("#{importeFormat}")
+		)
+
+		actualizaTotales()
 	##
 	##
 	##

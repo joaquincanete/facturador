@@ -32,13 +32,29 @@ block content
 					.panel.panel-primary.recibo-head
 						.panel-heading Recibo
 						.panel-body
-							dl.dl-horizontal
+							dl.dl-horizontal.total
 								dt Total
-								dd#total $ 0,00
+								dd.text-danger#total $ 0,00
 							
 							dl.dl-horizontal
 								dt Cantidad de Artículos
 								dd#contar 0
+							
+							dl.dl-horizontal
+								dt Precios 
+								dd
+									.btn-group.cambiar-listas(data-toggle="buttons")
+										label.btn.btn-primary.active
+											input#lista1(type="radio" name="options" autocomplete="off" checked)
+											| Lista 1
+										
+										label.btn.btn-primary
+											input#lista2(type="radio" name="options" autocomplete="off")
+											| Lista 2
+										
+										label.btn.btn-primary
+											input#lista3(type="radio" name="options" autocomplete="off")
+											| Lista 3
 
 							dl.dl-horizontal
 								dt 

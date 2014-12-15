@@ -43,7 +43,11 @@
 			'data' => array(
 				'codigo' => "0001",
 				'denominacion' => "Remera Hombre Manga Corta",
-				'precio' => "135.99"
+				'precio' => array(
+					"lista1" => "135.99",
+					"lista2" => "170.00",
+					"lista3" => "200.00",
+				)
 			)
 		);
 
