@@ -93,7 +93,7 @@
 			'data': { }
 		}
 
-		data.data['cliente-id'] = val
+		data.data['cliente_codcli'] = val
 
 		if val isnt ''
 			$.ajax
@@ -105,6 +105,7 @@
 
 				data: '&json='+ JSON.stringify(data)
 				success: (data, status, xhr) ->
+					#console.log data
 					obj = $.parseJSON(data);
 
 					if obj.estado is "exito"
@@ -113,7 +114,7 @@
 							<small>#{obj.data.direccion}</small>")
 
 				type: 'POST'
-				url: "ajax.php"
+				url: "libs/ajax.php"
 			return null
 	
 
@@ -134,6 +135,9 @@
 			data: '&json='+ JSON.stringify(data)
 			success: (data, status, xhr) ->
 				obj = $.parseJSON(data);
+				
+				$("#modal-clientes .modal-body tbody").html("")
+				
 				$.each( obj.data, ( key, value ) ->
 					$("#modal-clientes .modal-body tbody")
 						.append("
@@ -147,7 +151,7 @@
 				$("#modal-clientes").modal('show')
 
 			type: 'POST'
-			url: "ajax.php"
+			url: "libs/ajax.php"
 		return null
 
 
@@ -159,7 +163,7 @@
 			'data': { }
 		}
 
-		data.data['articulo-id'] = val
+		data.data['articulo_codart'] = val
 
 		if val isnt ''
 			$.ajax
@@ -196,7 +200,7 @@
 						$("#articulo-importe").html("#{precioFormat}")
 
 				type: 'POST'
-				url: "ajax.php"
+				url: "libs/ajax.php"
 			return null
 	
 
@@ -403,7 +407,22 @@
 					alert("Error al procesar stocks")
 
 			type: 'POST'
-			url: "ajax.php"
+			url: "libs/ajax.php"
 		return null
+
+
+
+
+	$.ajax
+		data: 'ajax=1'
+		success: (data, status, xhr) ->
+			obj = $.parseJSON(data);
+
+			$("#empresa_nombre").html("#{obj.empresa_nombre}")
+			$("#developed_by").html("#{obj.developed_by}")
+
+
+		type: 'POST'
+		url: "config.php"
 
 )(jQuery)

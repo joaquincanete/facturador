@@ -71,7 +71,7 @@
         'accion': "obtener-cliente",
         'data': {}
       };
-      data.data['cliente-id'] = val;
+      data.data['cliente_codcli'] = val;
       if (val !== '') {
         $.ajax({
           beforeSend: function(xhr, settings) {
@@ -89,7 +89,7 @@
             }
           },
           type: 'POST',
-          url: "ajax.php"
+          url: "libs/ajax.php"
         });
         return null;
       }
@@ -111,13 +111,14 @@
         success: function(data, status, xhr) {
           var obj;
           obj = $.parseJSON(data);
+          $("#modal-clientes .modal-body tbody").html("");
           $.each(obj.data, function(key, value) {
             return $("#modal-clientes .modal-body tbody").append("<tr class='list-cli-row' data-cid='" + key + "'> <td>" + key + "</td> <td>" + value.nombre + "</td> <td>" + value.direccion + "</td> </tr>");
           });
           return $("#modal-clientes").modal('show');
         },
         type: 'POST',
-        url: "ajax.php"
+        url: "libs/ajax.php"
       });
       return null;
     };
@@ -128,7 +129,7 @@
         'accion': "obtener-articulo",
         'data': {}
       };
-      data.data['articulo-id'] = val;
+      data.data['articulo_codart'] = val;
       if (val !== '') {
         $.ajax({
           beforeSend: function(xhr, settings) {
@@ -161,7 +162,7 @@
             }
           },
           type: 'POST',
-          url: "ajax.php"
+          url: "libs/ajax.php"
         });
         return null;
       }
@@ -271,7 +272,7 @@
       $($(".cambiar-listas label")[0]).addClass("active");
       return $("#cod-cliente").focus();
     };
-    return procesarStocks = function() {
+    procesarStocks = function() {
       var articulos, data;
       data = {
         'accion': "actualizar-stock",
@@ -304,10 +305,21 @@
           }
         },
         type: 'POST',
-        url: "ajax.php"
+        url: "libs/ajax.php"
       });
       return null;
     };
+    return $.ajax({
+      data: 'ajax=1',
+      success: function(data, status, xhr) {
+        var obj;
+        obj = $.parseJSON(data);
+        $("#empresa_nombre").html("" + obj.empresa_nombre);
+        return $("#developed_by").html("" + obj.developed_by);
+      },
+      type: 'POST',
+      url: "config.php"
+    });
   })(jQuery);
 
 }).call(this);
