@@ -11,10 +11,14 @@ function cerrar_bd($conn){
 
 function ejecutar_select_sql($sql, $conn){
 	$rs = odbc_exec($conn, $sql );
-	$rows = array();
-	while ( $row = odbc_fetch_array($rs) ) { array_push($rows, $row); }
+	if($rs) {
+		$rows = array();
+		while ( $row = odbc_fetch_array($rs) ) { array_push($rows, $row); }
+		return $rows;
+	} else {
+		return false;
+	}
 	
-	return $rows;
 }
 
 function ejecutar_sql($sql, $conn){

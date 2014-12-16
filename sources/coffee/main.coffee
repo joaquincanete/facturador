@@ -1,93 +1,168 @@
+###
+ * El script esta encapsulado en una funcion anónima autoejecutable
+ * para evitar conflictos con otras librerias.
+###
+
+# Ejecutamos jQuery en mono no confictos
+jQuery.noConflict()
 (($)->
+	###
+  ************************************************************************
+  *****************************  $Contenido  *****************************
+  * + Contenido
+  *
+  * + enlazarEventos
+  * + 
+  * + clientesEstablecer
+  * + clientesGeneraLista
+  * + clientesObtenerLista
+  * + clientesObtenerUno
+  * + clientesSeleccionar
+  * + 
+  * + 
+  * + 
+  * + 
+  * + document.ready()
+  * + windows.load()
+	###
 
-	#load a language
-	numeral.language('es', {
-		delimiters: {
-			thousands: '.',
-			decimal: ','
-		},
-		currency: {
-			symbol: '$'
-		}
-	});
-	#switch between languages
-	numeral.language('es');
+
+	# Enlaza todos los eventos correspondientes a las diferentes 
+	# funcionalidades de los botones, campos, teclas, etc.
+	enlazarEventos = () ->
+		### Eventos Globales para todo el documento ###
+		$( window ).on( "beforeunload", (e) ->
+			return "Todos los datos actuales se perderan si continúa." 
+		)
+
+		$("body").on( "keydown", (e) ->
+			if e.keyCode is 118
+				imprimir()
+				return false
+			
+			else if e.keyCode is 117
+				anular()
+				return false
+			return null
+		)
 
 
-	#Enlazando eventos
-	$("#cod-cliente").on( "blur", () ->
-		getCliente($(@))
-	)
-	
-	'''
-	$( window ).on( "beforeunload", () ->
-		return "Todos los datos actuales se perderan si continúa." 
-	)
-	'''
 
-	$("#search-clientes").on( "click", (e) ->
-		e.preventDefault()
-		getClientes()
-	)
-	
-	$("body").on( "click", ".list-cli-row", (e) ->
-		e.preventDefault()
-		$("#cod-cliente").val $(@).data("cid")
-		$("#modal-clientes").modal('hide')
-		$("#cod-cliente").blur()
-	)
+		### Botones ###
+		$("#search-clientes").on "click", (e) ->
+			e.preventDefault()
+			clientesObtenerLista()
+			return null
 
-	$("body").on( "click", ".delete-row", (e) ->
-		e.preventDefault()
-		deleteRow($(@))
-	)
+		$(".cambiar-listas label").on "click", (e) ->
+			e.preventDefault()
+			cambiarLista(e)
+			return null
 
-	$("#articulo-codigo").on( "blur", () ->
-		getArticulo($(@))
-	)
-
-	$("#articulo-cantidad").on( "keyup", (e) ->
-		setCantidad($(@))
-	)
-	
-	$("#articulo-cantidad").on( "keydown", (e) ->
-		addArticulo(e)
-	)
-	$("#clear-form").on( "click", (e) ->
-		e.preventDefault()
-		clearForm()
-	)
-
-	$(".cambiar-listas label").on( "click", (e) ->
-		e.preventDefault()
-		cambiarLista(e)
-	)
-
-	$("body").on( "keydown", (e) ->
-		if e.keyCode is 118
+		$("#imprimir").on "click", (e) ->
+			e.preventDefault()
 			imprimir()
-			return false
-		
-		else if e.keyCode is 117
+			return null
+
+		$("#anular").on "click", (e) ->
+			e.preventDefault()
 			anular()
-			return false
+			return null
 
-	)
+		$("body").on "click", ".list-cli-row", (e) ->
+			e.preventDefault()
+			clientesSeleccionar($(@))
+			return null
 
-	$("#imprimir").on( "click", (e) ->
-		e.preventDefault()
-		imprimir()
-	)
+		$("body").on "click", ".delete-row", (e) ->
+			e.preventDefault()
+			deleteRow($(@))
+			return null
+		
+		$("#clear-form").on "click", (e) ->
+			e.preventDefault()
+			clearForm()
+			return null
+			
 
 
-	$("#anular").on( "click", (e) ->
-		e.preventDefault()
-		anular()
-	)
+		### Acciones en campos ###
+		$("#cod-cliente").on "blur", (e) ->
+			clientesObtenerUno($(@))
+			return null
 
-	#funciones
-	getCliente = (elm) ->
+		$("#articulo-codigo").on "blur", (e) ->
+			getArticulo($(@))
+			return null
+
+		$("#articulo-cantidad").on "keyup", (e) ->
+			setCantidad($(@))
+			return null
+		
+		$("#articulo-cantidad").on "keydown", (e) ->
+			addArticulo(e)
+			return null
+		
+		return null
+
+
+
+	# Establece los datos del cliente en el cuadro "Cliente"
+	clientesEstablecer = (nombre, direccion) ->
+		$("#datos-cliente").html("#{nombre}<br><small>#{direccion}</small>")
+		return null
+
+
+
+	# Mustra una ventana modal con la lista de clientes
+	clientesGeneraLista = (list) ->
+		$("#modal-clientes .modal-body tbody").html("")
+		
+		$.each( list, ( key, value ) ->
+			$("#modal-clientes .modal-body tbody")
+				.append("
+					<tr 
+						class='list-cli-row' 
+						data-clicod='#{key}'
+						data-clinom='#{value.nombre}'
+						data-clidir='#{value.direccion}'
+					>
+						<td>#{key}</td>
+						<td>#{value.nombre}</td>
+						<td>#{value.direccion}</td>
+					</tr>")
+		)
+		
+		$("#modal-clientes").modal('show')
+
+		return null
+
+
+
+	# Obtiene la lista de clientes de la BD
+	clientesObtenerLista = () ->
+		data = {
+			'accion': "obtener-clientes",
+			'data': { }
+		}
+
+		$.ajax
+			data: '&json='+ JSON.stringify(data)
+			success: (data, status, xhr) ->
+				obj = $.parseJSON(data);
+				clientesGeneraLista(obj.data)
+
+			type: 'POST'
+			url: "libs/ajax.php"
+
+		return null
+	
+
+
+	# Busca en la BD los datos de un cliente en base al código de cliente
+	clientesObtenerUno = (elm) ->
 		val = elm.val()
+		
 		data = {
 			'accion': "obtener-cliente",
 			'data': { }
@@ -97,61 +172,32 @@
 
 		if val isnt ''
 			$.ajax
-				beforeSend: (xhr, settings) ->
-					return null
-
-				complete: (xhr, status)->
-					return null
-
 				data: '&json='+ JSON.stringify(data)
 				success: (data, status, xhr) ->
-					#console.log data
 					obj = $.parseJSON(data);
 
 					if obj.estado is "exito"
-						$("#datos-cliente").html("
-							#{obj.data.nombre}<br>
-							<small>#{obj.data.direccion}</small>")
+						clientesEstablecer(
+							obj.data.nombre, 
+							obj.data.direccion
+						)
+					else if obj.estado is "error"
+						console.error "Error al obtener el cliente."
 
 				type: 'POST'
 				url: "libs/ajax.php"
 			return null
-	
+
+		return null
 
 
-	getClientes = () ->
-		data = {
-			'accion': "obtener-clientes",
-			'data': { }
-		}
 
-		$.ajax
-			beforeSend: (xhr, settings) ->
-				return null
+	# Al seleccionar un cliente de la lista actualiza el cuadro "Cliente"
+	clientesSeleccionar = (elm) ->
+		$("#cod-cliente").val( elm.data("clicod") )
+		clientesEstablecer(elm.data("clinom"), elm.data("clidir") )
+		$("#modal-clientes").modal('hide')
 
-			complete: (xhr, status)->
-				return null
-
-			data: '&json='+ JSON.stringify(data)
-			success: (data, status, xhr) ->
-				obj = $.parseJSON(data);
-				
-				$("#modal-clientes .modal-body tbody").html("")
-				
-				$.each( obj.data, ( key, value ) ->
-					$("#modal-clientes .modal-body tbody")
-						.append("
-							<tr class='list-cli-row' data-cid='#{key}'>
-								<td>#{key}</td>
-								<td>#{value.nombre}</td>
-								<td>#{value.direccion}</td>
-							</tr>")
-				)
-				
-				$("#modal-clientes").modal('show')
-
-			type: 'POST'
-			url: "libs/ajax.php"
 		return null
 
 
@@ -413,16 +459,43 @@
 
 
 
-	$.ajax
-		data: 'ajax=1'
-		success: (data, status, xhr) ->
-			obj = $.parseJSON(data);
 
-			$("#empresa_nombre").html("#{obj.empresa_nombre}")
-			$("#developed_by").html("#{obj.developed_by}")
+	### begin $( document ).ready() block.  ###
+	$ () ->
+		enlazarEventos()
+
+		#Configuramos el plugin Numeral para dar formato a los numeros
+		#load a language
+		numeral.language('es', {
+			delimiters: {
+				thousands: '.',
+				decimal: ','
+			},
+			currency: {
+				symbol: '$'
+			}
+		});
+		#switch between languages
+		numeral.language('es');
+		
+
+		$.ajax
+			data: 'ajax=1'
+			success: (data, status, xhr) ->
+				obj = $.parseJSON(data);
+
+				$("#empresa_nombre").html("#{obj.empresa_nombre}")
+				$("#developed_by").html("#{obj.developed_by}")
 
 
-		type: 'POST'
-		url: "config.php"
+			type: 'POST'
+			url: "config.php"
+		return null 
+	### end $( document ).ready() block.  ###
+	
 
+	### begin $( window ).load() block.  ###
+	$(window).load () ->
+	### end $( window ).load() block.  ###
+	return null 
 )(jQuery)

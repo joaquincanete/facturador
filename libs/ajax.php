@@ -16,14 +16,24 @@
 			$cli123 = ejecutar_select_sql($sql, $conn);
 		cerrar_bd($conn);
 
-		$data = array(
-			'estado' => 'exito', #exito, error
-			'accion' => 'obtener-cliente',
-			'data' => array(
-				'nombre' => $cli123[0]["nomcli"],
-				'direccion' => $cli123[0]["domcli"] . ' - ' . $cli123[0]["loccli"],
-			)
-		);
+		if($cli123){
+			$data = array(
+				'estado' => 'exito', #exito, error
+				'accion' => 'obtener-cliente',
+				'data' => array(
+					'nombre' => $cli123[0]["nomcli"],
+					'direccion' => $cli123[0]["domcli"] . ' - ' . $cli123[0]["loccli"],
+				)
+			);
+		
+		} else {
+			$data = array(
+				'estado' => 'error', #exito, error
+				'accion' => 'obtener-cliente',
+				'data' => "",
+			);
+		}
+
 
 
 
